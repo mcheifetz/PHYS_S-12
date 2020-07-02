@@ -31,10 +31,24 @@ li
 	padding-bottom: 70px;
 }
 
-.column3 
+.column
 {
   float: left;
   width: 33.33%;
+  padding: 5px;
+}
+
+.column2 
+{
+  float: left;
+  width: 28%;
+  padding: 5px;
+}
+
+.column3 
+{
+  float: left;
+  width: 36%;
   padding: 5px;
 }
 
