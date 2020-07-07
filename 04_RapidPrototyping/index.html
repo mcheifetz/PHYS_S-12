@@ -7,6 +7,10 @@
   <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script> 
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/arduino-light.min.css">
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/arduino.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
   <link href="../style.css" rel="stylesheet">
 </head>
 
@@ -21,7 +25,7 @@
 
       <br>
 
-      <p>Info about week</p>
+      <p>The assignment for this class was to make and document a kinetic sculpture, integrating an electronic circuit with physical components. I love music and play the piano, so I decided to try and use music in my design. I wanted to do something that was actually plausible, so I stuck to trying to make drums. To do so, I made a circuit consisting of 2 motors with pieces from the board game Mouse Trap attached to the motors that would spin around and hit other pieces from the game, mimicing a drum. It also utilizes a potentiometer to allow me to slow down and speed up the beats. Pictures and a video of the circut are below: </p>
     </div>
 
  	  <div class = "column">
@@ -33,6 +37,17 @@
  	  <div class = "column">
       <img src = "./Breadboard2Circuit1.png" class = "img-responsive margin" style = "width:100%" height = "500" alt = "BB2C1">
  	  </div>
+
+    <br>
+
+    <p>Here's the code I used to make the motors spin using the potentiometer. I took Nathan's potentiometer code and editied it slightly to work with 2 motors instead of just 1.</p>
+
+    <pre><code class="language-arduino">
+    void loop(){
+      int i = 2;
+      int j = 3;
+    }
+    </code></pre>
   </div>
 </div>
 
