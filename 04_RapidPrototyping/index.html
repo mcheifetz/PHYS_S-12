@@ -29,13 +29,13 @@
     </div>
 
  	  <div class = "column">
-      <img src = "./MicrocontrollerCircuit1.png" class = "img-responsive margin" style = "width:100%" height = "500" alt = "Circuit">
+      <img src = "./Curcit.png" class = "img-responsive margin" style = "width:100%" height = "500" alt = "Circuit">
   	</div>
   	<div class = "column">
-      <img src = "./BreadboardCircuit1.png" class = "img-responsive margin" style = "width:100%" height = "500" alt = "PieceAndMotor">
+      <img src = "./Piece.png" class = "img-responsive margin" style = "width:100%" height = "500" alt = "PieceAndMotor">
  	  </div>
  	  <div class = "column">
-      <img src = "./Breadboard2Circuit1.png" class = "img-responsive margin" style = "width:100%" height = "500" alt = "DrumVideo">
+        <iframe src = "DrumVideo.mov" class = "img-responsive margin" style = "width:100%" height = "500" frameborder = "0" allow = "accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
  	  </div>
 
     <br>
@@ -43,9 +43,22 @@
     <p>Here's the code I used to make the motors spin using the potentiometer. I took Nathan's potentiometer code and editied it slightly to work with 2 motors instead of just 1.</p>
 
     <pre><code class="language-arduino">
-    void loop(){
-      int i = 2;
-      int j = 3;
+    void setup() {
+      pinMode(3, OUTPUT);   //Pin for M1
+      pinMode(6, OUTPUT);   //Pin for M2
+
+      pinMode(A0, OUTPUT);  //This will be GND for the potentiometer
+      pinMode(A4, OUTPUT);  //This will be 3.3V for the pot.
+
+      digitalWrite(A0, LOW);
+      digitalWrite(A4, HIGH);
+    }
+
+    void loop() {
+      int pot_value = analogRead(A2);   //pot wiper is on A2
+      int motor_level = map(pot_value, 0, 1023, 255, 0); // map motor_level to pot_value so that zero corresponds to lowest speed.
+      analogWrite(3, motor_level); //Motor 1
+      analogWrite(6, motor_level);  //Motor 2
     }
     </code></pre>
   </div>
