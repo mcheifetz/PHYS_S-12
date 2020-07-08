@@ -25,7 +25,7 @@
 
       <br>
 
-      <p>The first part of the assignment for this class was to program a microcontroller to produce an output using at least one button for input while including a conditional statement and a for loop. We had worked with using a button to dim LED's in breakout rooms the previous day, so I decided to expand upon that and give it my own twist. I decided to have one LED performing a task if the button wasn't pressed, and the other LED performing a task if the button was pressed. I ended up programming the LED's so that, if the button was pressed, a red LED would brighten over 2.5 seconds, and then dim over 2.5 seconds. Otherwise, a green LED would dim over 2.5 seconds. The code for this can be seen below. </p>
+      <p>The first part of the assignment for this class was to program a microcontroller to produce an output using at least one button for input while including a conditional statement and a for loop. We had worked with using a button to dim LED's in breakout rooms the previous day, so I decided to expand upon that and give it my own twist. I decided to have one LED performing a task if the button wasn't pressed, and the other LED performing a task if the button was pressed. I ended up programming the LED's so that, if the button was pressed, a red LED would brighten over 2.5 seconds and then dim over 2.5 seconds. Otherwise, a green LED would dim over 2.5 seconds. The code for this can be seen below. </p>
       <pre><code class="language-arduino">
       void loop() {
         // read the state of the pushbutton value:
@@ -33,7 +33,7 @@
   
         // check if the pushbutton is pressed. If it is, the buttonState is HIGH:
         if (buttonState == HIGH) {
-          // If the button is pressed, brighten the second (red) LED over 2.5 seconds, then dim it over 2.5 seconds
+          // If the button is pressed, brighten the second (red) LED over 2.5 seconds then dim it over 2.5 seconds
           for (int i = 0; i <= 250; i+= 1) {
             analogWrite(PWMpin1, i);  //Second LED gets brighter
             delay(10);
