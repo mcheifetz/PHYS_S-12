@@ -27,6 +27,10 @@
       <p>The first part of the assignment for this class was to design and prepare to print a component I need for my final project. For my final project, I'm making a keyboard that will use copper tape and a buzzer to make sound, so I knew that almost my entire project would need to be 3D printed. The first thing I did was find <a href = https://www.thingiverse.com/thing:17772>this</a> set of piano keys on Thingiverse. I then imported it into Fusion 360 and, since it was imported as a mesh body, retraced it to make it a regular body, which made editing it significantly easier. I knew that I was going to have a box containing my microcontroller, buzzer, and buttons (to change the octave) behind the keyboard, so I modeled a platform under the keyboard to hold the keys and box together. Once I was happy with that, I made the box that would hold my other components. I used the user parameters to set the dimensions of the box and then extruded it to the necessary height. Once I had the height set, I used the shell tool to hollow out the box, making room for the microcontroller. Next, I used my caliper to measure the diameter of the wires that I would be using to connect my copper tape to my microcontroller, added it to my user parameters, and then added holes above each key. Once I had the holes, I extruded them the depth of the box using the Extrude To tool. the next step was to make a gear-like pattern on the top of the box so that I could fit a roof, making it easy to remove, as I knew that I would want to ensure I could take it apart to fix things or make changes. I practiced a bit with the Rectangular Pattern tool before attempting this so that I could make sure I did it right. On the shorter face of the box, I made a rectangle that was 1/7 the width of the box long and the depth of the box wide. The reason I did the depth of the box for the dimension is because I did a lot of thinking, and I realized that the roof would need to fit well with the rest of the box, meaning the depth of the roof should equal the width of the rectangle, to ensure a proper fit. I then the used the Rectangular Pattern tool to copy and paste the rectangle 7 times, completely filling the width of the box. I then duplicated this on the other shorter face. Next, on one of the longer faces, I made a rectangle that was 1/17 the length of the box long and, again, the depth of the box wide. I then used the Rectangular pattern tool to completely fill the top of the face with rectangles, just like before, and then duplicated this on the other face. I then used the Extrude To tool to cut out the holes to fit the roof. I learned a lot through this process, specifically with the rectangular pattern tool, as I struggled to properly space the rectangles in the beginning. It was a lot of trial and error, but I'm glad I put in the time to really learn how to use it, as it made making the roof significantly easier.</p>
 
       <br>
+      <p>Here's an image of the final piano and box:</p>
+      <img src = "./pianoAndBox.PNG" class = "img-responsive margin" style = "width:100%; float:left" height = "250" width = 300 alt = "pianoAndBox">
+
+      <br>
 
       <p>Here are the links to the piano and box files, both in Fusion 360 and for 3D printing:
       <ul>
@@ -63,6 +67,10 @@
         <li><a download href = './Microcontroller_Holder_Pins-v5_0.15mm_PLA_MK3S_27m.gcode'>Sliced gcode file (.gcode)</a></li>
       </ul>
       </p>
+
+      <br>
+
+      <p>Overall, I learned a lot during the 3D modeling part of this assignment. Whether it be the rectangular pattern, shell, and extrude to tools, or just the general process of taking more effecient steps to make the models, I feel much stronger working with Fusion 360 than I did coming into the week.</p>
 
     </div>
   </div>
