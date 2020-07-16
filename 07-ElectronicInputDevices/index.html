@@ -103,7 +103,7 @@
     </div>
 
     <div class = "col-md-12">
-      <p>Based on my results, I realized that Mr. Hart must have been using the north side of his magnet, as his numbers increased as the distanced increased, just as mine did for the north side. I also noted that the increase for the north side and decrease for the south side were very similar each time compared between the current value and previous value, which makes sense, as the magnet is nearly equal strength on each side. Of course, there was probably some error in my measurements, but I don't belive there was enough to make my data inaccurate. I learned a lot about sensors through this first exploration, as I had no idea how the sensor worked beforehand. It was interesting to see how the range varied from about 5-1001, with a no magnet reading almost exactly in the middle.</p>
+      <p>Based on my results, I realized that Mr. Hart must have been using the north side of his magnet, as his numbers increased as the distanced increased, just as mine did for the north side. I also noted that the increase for the north side and decrease for the south side were very similar each time compared between the current value and previous value, which makes sense, as the magnet is nearly equal strength on each side. Of course, there was probably some error in my measurements, but I don't belive there was enough to make my data inaccurate. I learned a lot about sensors through this first exploration, as I had no idea how the sensor worked beforehand. It was interesting to see how the range varied from about 5-1001, with a no magnet reading almost exactly in the middle. I also noticed that the sensor is most sensitve between distances of 0 and 4 mm, as those had the biggest differences in readings from the prior measurement.</p>
 
       <br>
 
@@ -120,7 +120,53 @@
       <pre><code class="language-arduino">
       </code></pre>
 
-      <p>The last step was to combine the circuit and code. I did so, and this was the result:</p>
+      <p>Next, I recorded a table of Serial Ouput values, just as I did before. Here's the result:</p>
+      <table style = "width:50%">
+        <tr>
+          <th>Distance from Sensor (mm)</th>
+          <th>Serial Output (South)</th> 
+          <th>Serial Output (North)</th>
+        </tr>
+        <tr>
+          <td>0</td><td>1001</td><td>5</td>
+        </tr>
+        <tr>
+          <td>1</td><td>977</td><td>20</td>
+        </tr>
+        <tr>
+          <td>2</td><td>825</td><td>160</td>
+        </tr>
+        <tr>
+          <td>3</td><td>780</td><td>230</td>
+        </tr>
+        <tr>
+          <td>4</td><td>700</td><td>300</td>
+        </tr>
+        <tr>
+          <td>5</td><td>659</td><td>340</td>
+        </tr>
+        <tr>
+          <td>6</td><td>602</td><td>392</td>
+        </tr>
+        <tr>
+          <td>7</td><td>595</td><td>400</td>
+        </tr>
+        <tr>
+          <td>8</td><td>580</td><td>420</td>
+        </tr>
+        <tr>
+          <td>9</td><td>565</td><td>441</td>
+        </tr>
+        <tr>
+          <td>10</td><td>553</td><td>454</td>
+        </tr>
+      </table>
+
+      <br>
+
+      <p>And here's a graph of these values:</p>
+
+      <p>And this is a video of the buzzer in action!</p>
       <div>
         <video controls style = "width:25%; min-width:150px"><source src = "./CopperTapeVideo.mp4" type = "video/mp4"></video>
       </div>
