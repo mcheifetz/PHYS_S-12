@@ -128,61 +128,26 @@
   
       //Setup pin mode
       pinMode(buzzerPin, OUTPUT);
-    }
-
-    void loop() {
-      long sensorValue = Sensor.capacitiveSensor(10000);      //Change the number of samples to get the required timing and sensitivity.
-      delay(10);
-      Serial.println(sensorValue);
-      int note = map(sensorValue, 100, 4000, 100, 2000); //map range of sensor values to range of tones
-
-      if (sensorValue > 1000) {
-        tone(buzzerPin, C, 100); //play tones according to value from map function
-        delay(10);
       }
-    }
-    </code></pre>
 
-      <p>Next, I recorded a table of Serial Ouput values, just as I did before. Here's the result:</p>
-      <table style = "width:25%">
-        <tr>
-          <th>Distance from Sensor (mm)</th>
-          <th>Serial Output</th> 
-        </tr>
-        <tr>
-          <td>0</td><td></td>
-        </tr>
-        <tr>
-          <td>5</td><td></td>
-        </tr>
-        <tr>
-          <td>10</td><td></td>
-        </tr>
-        <tr>
-          <td>15</td><td></td>
-        </tr>
-        <tr>
-          <td>20</td><td></td>
-        </tr>
-        <tr>
-          <td>25</td><td></td>
-        </tr>
-        <tr>
-          <td>30</td><td></td>
-        </tr>
-        <tr>
-          <td>35</td><td></td>
-        </tr>
-        <tr>
-          <td>40</td><td></td>
-        </tr>
-      </table>
+      void loop() {
+        long sensorValue = Sensor.capacitiveSensor(10000);      //Change the number of samples to get the required timing and sensitivity.
+        delay(10);
+        Serial.println(sensorValue);
+        int note = map(sensorValue, 100, 4000, 100, 2000); //map range of sensor values to range of tones
+
+        if (sensorValue > 1000) {
+          tone(buzzerPin, C, 100); //play tones according to value from map function
+          delay(10);
+        }
+      }
+      </code></pre>
+
+      <p>For some reason, no matter what I tried, I couldn't get the copper tape to sense my hand unless I was touching it. I was originally disappointed, as I wasn't able to make a graph or table like in the previous example. But, I soon realized that this is actually ideal, as I'm making a piano that should only play a note when the key is touched.</p>
 
       <br>
 
-      <p>And here's a graph of these values:</p>
-
-      <p>And this is a video of the buzzer in action!</p>
+      <p>Here's a video of the buzzer in action!</p>
       <div>
         <video controls style = "width:25%; min-width:150px"><source src = "./CopperTapeVid.mov" type = "video/mov"></video>
       </div>
