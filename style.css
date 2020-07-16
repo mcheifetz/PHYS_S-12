@@ -20,6 +20,20 @@ li
 	font-size: 16px;
 }
 
+table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+  font-size: 16px;
+}
+th, td {
+  padding: 5px;
+  font-size: 16px;
+}
+th {
+  text-align: left;
+  font-size: 16px;
+}
+
 code 
 {
     border-radius: 5px; 
