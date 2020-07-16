@@ -24,7 +24,7 @@
 
       <br>
 
-      <p>The first part of the assignment for this class was to use a sensor from the kit to measure a physical quantity with the Arduino. I also had to calibrate the sensor, which means describing the range between its min and max values and whether I can control this range. Lastly, I needed to show data in the form of a table or graph. I chose to use the Hall sensor, like Mr. Hart did, because I wanted to use his demo to get a better understanding of sensors and how they worked. Also, I used a horseshoe magnet from a small kit I had as a little kid magnet, and I wanted to see the difference in results between my magnet and Mr. Hart's. I set up my circuit as seen below: </p>
+      <p>The first part of the assignment for this class was to use a sensor from the kit to measure a physical quantity with the Arduino. I also had to calibrate the sensor, which means describing the range between its min and max values and whether I can control this range. Lastly, I needed to show data in the form of a table or graph. I chose to use the Hall sensor, like Mr. Hart did, because I wanted to use his demo to get a better understanding of sensors and how they worked. Also, I used a horseshoe magnet from a small magnet kit I had as a little kid, and I wanted to see the difference in results between my magnet and Mr. Hart's. I set up my circuit as seen below: </p>
 
       <div>
         <img src = "./circuit1.png" class = "img-responsive margin" style = "float: left; width: 25%; padding: 5px" height = "350" alt = "circuit1">
@@ -116,9 +116,32 @@
 
     <div class = "col-md-12">
 
-      <p>After making the circuit, I knew that I would have to add code for the Capacitive sensor (the copper wire) and the buzzer. I read <a href = "https://nathanmelenbrink.github.io/intro-dig-fab/08_output/led-buzzers">Nathan's tutorial about buzzers</a> to learn about how the buzzer worked, specifically about producing sound using the tone function. Once I had a better understanding of the buzzer, I produced this code:</p>
+      <p>After making the circuit, I knew that I would have to add code for the Capacitive sensor (the copper wire) and the buzzer. I read <a href = "https://nathanmelenbrink.github.io/intro-dig-fab/08_output/led-buzzers">Nathan's tutorial about buzzers</a> to learn about how the buzzer worked, specifically about producing sound using the tone function. I learned a lot about how the buzzer works. Since I'm making a piano, I wanted to press the tape and have it play a predetermined note, in this case a C. I used <a href = "https://gist.github.com/nicksort/4736535">this</a> example code to figure out the frequency of the C note. Once I had a better understanding of the buzzer, I produced this code to both print the Serial Output number and play a C if the tape was touched:</p>
       <pre><code class="language-arduino">
-      </code></pre>
+      #include <CapacitiveSensor.h>
+      const int C = 261;
+      int buzzerPin = 9;
+      CapacitiveSensor Sensor = CapacitiveSensor(7, 5); //7 is charge pin.  5 is sense pin.
+
+      void setup() {
+      Serial.begin(9600);
+  
+      //Setup pin mode
+      pinMode(buzzerPin, OUTPUT);
+    }
+
+    void loop() {
+      long sensorValue = Sensor.capacitiveSensor(10000);      //Change the number of samples to get the required timing and sensitivity.
+      delay(10);
+      Serial.println(sensorValue);
+      int note = map(sensorValue, 100, 4000, 100, 2000); //map range of sensor values to range of tones
+
+      if (sensorValue > 1000) {
+        tone(buzzerPin, C, 100); //play tones according to value from map function
+        delay(10);
+      }
+    }
+    </code></pre>
 
       <p>Next, I recorded a table of Serial Ouput values, just as I did before. Here's the result:</p>
       <table style = "width:25%">
@@ -161,7 +184,7 @@
 
       <p>And this is a video of the buzzer in action!</p>
       <div>
-        <video controls style = "width:25%; min-width:150px"><source src = "./CopperTapeVideo.mp4" type = "video/mp4"></video>
+        <video controls style = "width:25%; min-width:150px"><source src = "./CopperTapeVid.mov" type = "video/mov"></video>
       </div>
 
     </div>
