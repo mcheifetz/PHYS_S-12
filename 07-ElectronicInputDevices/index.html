@@ -134,7 +134,6 @@
         long sensorValue = Sensor.capacitiveSensor(10000);      //Change the number of samples to get the required timing and sensitivity.
         delay(10);
         Serial.println(sensorValue);
-        int note = map(sensorValue, 100, 4000, 100, 2000); //map range of sensor values to range of tones
 
         if (sensorValue > 1000) {
           tone(buzzerPin, C, 100); //play tone
