@@ -1,3 +1,4 @@
+
 <!doctype html>
 <html class="no-js" lang="en">
 <head>
@@ -11,16 +12,16 @@
 	<button id="turn-off" name="turnoff">Turn Off </button>
 
 	<!-- The core Firebase JS SDK is always required and must be listed first -->
-	<script src="https://www.gstatic.com/firebasejs/7.16.1/firebase-app.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/7.13.2/firebase-app.js"></script>
 
 	<!-- TODO: Add SDKs for Firebase products that you want to use
-     	https://firebase.google.com/docs/web/setup#available-libraries -->
-	<script src="https://www.gstatic.com/firebasejs/7.16.1/firebase-analytics.js"></script>
+	     https://firebase.google.com/docs/web/setup#available-libraries -->
+	<script src="https://www.gstatic.com/firebasejs/7.13.2/firebase-database.js"></script>
 
 	<script>
-  	// Your web app's Firebase configuration
-  	var firebaseConfig = {
-	    apiKey: "AIzaSyBRCnFC19wiQ5NGqVol-zo4UV_DRXHWStg",
+	// Your web app's Firebase configuration
+	const firebaseConfig = {
+	 	apiKey: "AIzaSyBRCnFC19wiQ5NGqVol-zo4UV_DRXHWStg",
 	    authDomain: "esp32-led-d8880.firebaseapp.com",
 	    databaseURL: "https://esp32-led-d8880.firebaseio.com",
 	    projectId: "esp32-led-d8880",
@@ -28,11 +29,10 @@
 	    messagingSenderId: "284512111422",
 	    appId: "1:284512111422:web:72f567aa6e914cff92ba6f",
 	    measurementId: "G-8QT1RK03BK"
-  	};
-  
-  	// Initialize Firebase
-  	firebase.initializeApp(firebaseConfig);
-  	firebase.analytics();
+	};
+	
+	// Initialize Firebase
+	firebase.initializeApp(firebaseConfig);
 
 	// Get a database reference to our blog
 	var ref = firebase.database().ref("/");
