@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Class 8: Electronic Output Devices </title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script> 
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/arduino-light.min.css">
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/arduino.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <link href="../style.css" rel="stylesheet">
+</head>
+
+<body align = "center">
+<div class = "container-fluid">
+  <h3>Class 8: Electronic Output Devices</h3> <br> 
+  <div class = "row">
+    
+    <div class = "col-md-12">
+      <p><a href = '../index.html'>Home</a></p>
+
+      <br>
+
+      <p>The assignment for this class was to choose an output device that I haven't used before and program a microcontroller to operate it. In class, most of us had experimented with LED strips in breakout rooms, but I never had the chance, as I was busy trying to make a more complicated melody using the buzzer. So I thought it would be a good idea for me to work with the LED strip for this assignment. Since I'm making a piano with the buzzer for my final project, I decided to combine the LED strip with the buzzer, and sync up the lights with some music.</p>
+
+      <br>
+
+      <p>The first step of this assignment was to build the circuit that had an LED strip and buzzer. Using <a href = "https://nathanmelenbrink.github.io/intro-dig-fab/08_output/led-buzzers">Nathan's tutorial</a> about buzzers and LED strips, I made this a simple circuit with a buzzer and then plugged the LED strip into the correct ports on the Metro board. The circuit looks like this:</p>
+
+      <div>
+        <img src = "./circuit.png" class = "img-responsive margin" style = "float: left; width: 25%; padding: 5px" height = "350" alt = "circuit">
+      </div>
+
+    </div>
+
+    <div class = "col-md-12">
+      <br>
+
+      <p>The next step of this process was to make the music using the Ardiuno IDE and the buzzer. For my code, I first found a <a href = "https://pages.mtu.edu/~suits/notefreqs.html">frequency chart</a> for piano notes. I recorded the frequencies for each note from middle C up two octaves as constants in my code. Each note looked like this:</p>
+
+      <pre><code class="language-arduino">
+      const int c = 262;
+      const int cS = 277;
+      const int d = 294;
+      const int dS = 311;
+      </code></pre>
+
+      <p>Next, I had to start making the first song. I wanted to choose something everyone would know, so I decided to remake Happy Birthday. I found <a href = "https://www.music-for-music-teachers.com/images/xhappy-birthday-little-chords-alphanote-helper.gif.pagespeed.ic.jg4r86vwJT.png">the sheet music</a> for the song, and started writing in each note. To make sure the duration was correct, I made the song a function in which one of the parameters was the beats per minute (bpm) of the song. By inputting the bpm, I realized that it was possible to mathematically determine the length of each note. A quarter note, which marks each beat. To calculate of the duration of a quarter note, I took 60,000 (the number of ms in a minute) and divided it by the bpm. For Happy Birthday, the bpm was 120, so this was 60,000 / 120 = 500 ms. From there, I could calculate the duration of all other necessary notes using my prior knowledge of how each note works. In the code, I had to do <i>float</i> division, as integer division returned 0. I casted the division to a float and then casted the result to an integer. The code looked like this:</p>
+
+      <pre><code class="language-arduino">
+      //60,000 because there's 60,000 ms in a minute
+      quarterNoteDuration = (int) ((float) 60000 / bpm); //At 120 BPM a quarter note will have a duration of 500 ms
+      halfNoteDuration = quarterNoteDuration * 2;                     
+      dottedEigthNoteDuration = (int) (quarterNoteDuration * 0.75);       
+      sixteenthNoteDuration = (int) ((float) quarterNoteDuration / 4);
+      </code></pre>
+
+      <p>Once I had each note duration recorded in a variable, I started making the song. To do so, I used the <i>tone()</i> function for the buzzer. I entered the buzzerPin for output, which note it would play, and whether it was a quarter note, half note, etc. After calling <i>tone()</i>, I then delayed the program by the duration of the note, as the tone function can run at the same time as other commands. Without the delay, it tries to play every note at the same time, which turns into a jumbled mess. Next, I repeated this process for each note of the song. I'm not going to paste all of the code for the notes because it's really repetitive, but here's an example of one note:</p>
+
+      <pre><code class="language-arduino">
+      tone(buzzerPin, d, quarterNoteDuration);
+      delay(quarterNoteDuration);
+      </code></pre>
+
+      <p>Once I had put in each note of Happy Birthday, I tested it with the circuit (just with the buzzer, I hadn't done the LED yet) I liked how it sounded, but I decided to go even further and make a much longer and more complicated song. I played Mozart's <i>Rondo Alla Turca</i> on the piano a couple years ago, so I chose to remake the first section. Like Happy Birthday, I used the <a href = "https://www.musicnotes.com/sheetmusic/mtd.asp?ppn=MN0063860">sheet music</a> to code each note. Since the first section of the song repeats, I broke the song up into two functions, the first section and second section. Doing so allowed me to call the first section function twice to simulate the repeat. After fixing a few of the notes, I had a really great sounding song! This one took a lot more effort, as the song was longer and more complicated, but I think it sounds really good.</p>
+
+      <br>
+
+      <p>After successfully coding the songs to work with the buzzer, it was time to implement the LED. Using <a href = "">Nathan's LED strip tutorial</a>, I read about how the LED strip works and how to code it. The first thing I did was add to both the beginning of my program and the <i>setup()</i> function. They ended up looking like this.</p>
+
+      <pre><code class="language-arduino">
+      #include <Adafruit_NeoPixel.h>
+
+      #define PIN        6 
+      #define NUMPIXELS 10 
+      #define DELAYVAL 500 // Time (in milliseconds) to pause between pixels
+
+      Adafruit_NeoPixel strip(NUMPIXELS, PIN, NEO_GRB + NEO_KHZ800);
+
+      int buzzerPin = 10;
+
+      void setup() {  
+        //Setup pin mode
+        pinMode(buzzerPin, OUTPUT);
+
+        strip.begin(); // INITIALIZE NeoPixel strip object (REQUIRED)
+        strip.show();            // Turn OFF all pixels ASAP
+        strip.setBrightness(10); // Set BRIGHTNESS low to reduce draw (max = 255)
+      }
+      </code></pre>
+
+      <p>After setting up the LED, I decided to make a function that I could call after each <i>tone()</i> for the notes. I didn't want the LED strip to just display a color on the entire strip, but I instead decided to have it display a random color of the rainbow. To implement randomness, I found a <a href = "https://www.tutorialspoint.com/c_standard_library/c_function_rand.htm">website</a> that detailed how the <i>rand()</i> function worked, as I've never worked in C before. After figuring how to generate a random number between 0 and a specficied number, I decided it would be best to put the rainbow RGB colors in a 2D array. I read <a href = "https://www.tutorialspoint.com/cprogramming/c_multi_dimensional_arrays.htm">this</a> page on multidimensional arrays in C and used a <a href = "https://i.pinimg.com/originals/d8/81/b2/d881b2850db572a124dc5c17549c40d6.png">chart of the RGB colors of the rainbow</a> to make the 2D array of the colors of the rainbow. To actually make a random spot on the LED strip light up, I used the <a href = "https://adafruit.github.io/Adafruit_NeoPixel/html/class_adafruit___neo_pixel.html">Adafruit NeoPixel function <i>setPixelColor()</i></a> to set the spot of the LED strip to light up and what color would appear. At this point, I realized something crucial. I could actually take the delay length as a parameter in the LED function, and delay it after lighting up the LED strip. Doing this would allow me to replace the delay after each note with a call to the LED function, in which the delay length is the note length. The final LED display function looked like this:</p>
+
+      <pre><code>
+      void displayRandomLED(int delayLength){
+        strip.clear(); // Set all pixel colors to 'off'
+
+        //Array of the RGB values for each color of the rainbow
+        int rainbowColors[7][3] = {{255, 0, 0}, {255, 127, 0}, {255, 255, 0}, {0, 255, 0}, {0, 0, 255}, {75, 0, 130}, {148, 0, 211}};
+
+        //Chooses a random number 0-6 (index of each color of the rainbow)
+        int rainbowCol = rand() % 7;
+
+        //Chooses a random spot on the LED strip
+        int ledSpot = rand() % 10;
+
+        //Lights up the random spot on the LED strip using the random color of the rainbow
+        strip.setPixelColor(ledSpot, rainbowColors[rainbowCol][0], rainbowColors[rainbowCol][1], rainbowColors[rainbowCol][2]);  
+        strip.show();
+        delay(delayLength);
+      }
+      </code></pre>
+
+      <p>Once I tested this, I was really happy with how the LED strip worked with the buzzer. I recorded both songs, and here's the result (Happy Birthday on the left, Rondo Alla Turca on the right):
+
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
