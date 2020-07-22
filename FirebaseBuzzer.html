@@ -49,33 +49,110 @@
 	var ref = firebase.database().ref("/");
 
 	// make the buttons call the function below 
-	document.getElementById('C').addEventListener('click', C, false);
-	document.getElementById('C#').addEventListener('click', C#, false);
-	document.getElementById('D').addEventListener('click', D, false);
-	document.getElementById('D#').addEventListener('click', D#, false);
-	document.getElementById('E').addEventListener('click', E, false
-	document.getElementById('E').addEventListener('click', F, false);
-	document.getElementById('C#').addEventListener('click', F#, false);
-	document.getElementById('G').addEventListener('click', G, false);
-	document.getElementById('G#').addEventListener('click', G#, false);
-	document.getElementById('A').addEventListener('click', A, false);
-	document.getElementById('A#').addEventListener('click', A#, false);
-	document.getElementById('B').addEventListener('click', B, false);
-	document.getElementById('CH').addEventListener('click', CH, false);
+	document.getElementById('C').addEventListener('click', playC, false);
+	document.getElementById('C#').addEventListener('click', playCSharp, false);
+	document.getElementById('D').addEventListener('click', playD, false);
+	document.getElementById('D#').addEventListener('click', playDSharp, false);
+	document.getElementById('E').addEventListener('click', playE, false
+	document.getElementById('E').addEventListener('click', playF, false);
+	document.getElementById('C#').addEventListener('click', playFSharp, false);
+	document.getElementById('G').addEventListener('click', playG, false);
+	document.getElementById('G#').addEventListener('click', playGSharp, false);
+	document.getElementById('A').addEventListener('click', playA, false);
+	document.getElementById('A#').addEventListener('click', playASharp, false);
+	document.getElementById('B').addEventListener('click', playB, false);
+	document.getElementById('CH').addEventListener('click', playHighC, false);
 
-	function turnOn(){
-		console.log("turning on");
+	function playC(){
+		console.log("Playing C");
 		ref.update({
-			"LED_STATUS": "ON"
+			"NOTE_STATUS": "C"
 		});
 	}
 
-	function turnOff(){
-		console.log("turning off");
+	function playCSharp(){
+		console.log("Playing C#");
 		ref.update({
-			"LED_STATUS": "OFF"
+			"NOTE_STATUS": "C#"
 		});
-	}	
+	}
+
+	function playD(){
+		console.log("Playing D");
+		ref.update({
+			"NOTE_STATUS": "D"
+		});
+	}
+
+	function playDSharp(){
+		console.log("Playing D#");
+		ref.update({
+			"NOTE_STATUS": "D#"
+		});
+	}
+
+	function playE(){
+		console.log("Playing E");
+		ref.update({
+			"NOTE_STATUS": "E"
+		});
+	}
+
+	function playF(){
+		console.log("Playing F");
+		ref.update({
+			"NOTE_STATUS": "F"
+		});
+	}
+
+	function playFSharp(){
+		console.log("Playing F#");
+		ref.update({
+			"NOTE_STATUS": "F#"
+		});
+	}
+
+	function playG(){
+		console.log("Playing G");
+		ref.update({
+			"NOTE_STATUS": "G"
+		});
+	}
+
+	function playGSharp(){
+		console.log("Playing G#");
+		ref.update({
+			"NOTE_STATUS": "G#"
+		});
+	}
+
+	function playA(){
+		console.log("Playing F");
+		ref.update({
+			"NOTE_STATUS": "F"
+		});
+	}
+
+	function playASharp(){
+		console.log("Playing A#");
+		ref.update({
+			"NOTE_STATUS": "A#"
+		});
+	}
+
+	function playB(){
+		console.log("Playing B");
+		ref.update({
+			"NOTE_STATUS": "B"
+		});
+	}
+
+	function playHighC(){
+		console.log("Playing CH");
+		ref.update({
+			"NOTE_STATUS": "CH"
+		});
+	}
     </script>
 
 </body>
