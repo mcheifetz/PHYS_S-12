@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Class 9: Networking </title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script> 
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/arduino-light.min.css">
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/arduino.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <link href="../style.css" rel="stylesheet">
+</head>
+
+<body align = "center">
+<div class = "container-fluid">
+  <h3>Class 9: Networking</h3> <br> 
+  <div class = "row">
+    
+    <div class = "col-md-12">
+      <p><a href = '../index.html'>Home</a></p>
+
+      <br>
+
+      <p>The assignment for this class was to control a board from a local wireless network, and I also had to program a microcontroller to obtain and respond to information from the internet. As in the past few classes, I wanted to work some aspect of a piano into my assignment, again using the buzzer. I first modified the LED and Huzzah circuit to implement a buzzer plugged into ground and pin 5. The circuit looked like this:</p>
+      
+      <div>
+        <img src = "./circuit.png" class = "img-responsive margin" style = "float: left; width: 25%; padding: 5px" height = "350" alt = "circuit">
+      </div>
+    </div>
+
+    <div class = "col-md-12">
+      <p>After setting up the circuit, I re-followed <a href = "https://nathanmelenbrink.github.io/intro-dig-fab/09_networking/huzzah1b.html">Nathan's Firebase tutorial</a> to set up a new project for my buzzer. Once through with the tutorial, I edited the Arduino code I had used for the Firebase LED exploration to work with my buzzer idea. I first added in the constants for the note frequencies using my past assignment for Output Devices. In the loop function, I had a series of if/if else statments checking the current status of the note string (ie. if it was "C", or "D", etc.). Based on the status of the string, it would play a certain note for 500 ms using the <i>myTone()</i> function, as the <i>tone()</i> function didn't work with the Huzzah. It was after testing this that I ran into my first issue: the loop never changed the string back to <i>""</i> after playing the note, meaning that the selected note was playing on repeat, which was not what I wanted. I worked with Nathan in the lab time to fix this, and we came up with the solution of setting the firebaseData string back to an empty string as soon as the note had been played. The note playing code ended up looking like this (C note as an example):</p>
+
+      <pre><code class="language-arduino">
+      if (fireString == "C") {          //Compare the input of note status received from firebase
+        Serial.println("Note is C");
+        myTone(buzzerPin, c, 500);      //Play C for 500 ms
+        Firebase.set(firebaseData, "/NOTE_STATUS", ""); 
+      }
+      </code></pre>
+
+      <p>Once I finished testing this code to make sure it worked directly on the Firebase website, I moved on to making the website version with HTML and JavaScript. I again edited the Firebase LED code that I had for the other website. The first thing I did was change the on/off buttons to buttons corresponding to piano notes. I ended up changing that again later, so I'll go into more detail about that soon. I then edited the JavaScript code to work with the buttons and buzzer. I haven't had any prior experience with JavaScript, so I made sure to study the Firebase LED code to learn more about JavaScript so I could make sure to implement it correctly. I changed the <i>document.getElementById().addEventListener()</i> lines to work with each note, and then added JS functions to play each note. The functions actually changed the note status to a different note, which used the Huzzah to play that note on the buzzer. Here's an example of the JS (again, just using C as an example)</p>
+
+      <pre><code class="language-arduino">
+      // Get a database reference to our blog
+      var ref = firebase.database().ref("/");
+
+      // make the buttons call the function below 
+      document.getElementById('C').addEventListener('click', playC, false);
+
+      function playC(){
+        console.log("Playing C");
+        ref.update({
+          "NOTE_STATUS": "C"
+        });
+      }
+      </code></pre>
+
+      <p>I tested this with the website, and it worked! But I didn't like how the notes were just </p>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
