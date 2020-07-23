@@ -59,7 +59,12 @@
       }
       </code></pre>
 
-      <p>I tested this with the website, and it worked! But I didn't like how the notes were just </p>
+      <p>I tested this with the website, and it worked! But I didn't like how the notes were just buttons on the screen. So I used Inkscape to create each note, and replaced the buttons with the images. I originally tried putting the image tag inside the button tag, but it didn't look right. I then did some research and read <a href = "https://stackoverflow.com/questions/16131988/making-an-image-act-like-a-button">this discussion from StackOverflow</a> and figured how to make an input of type <i>image</i>, which worked well. The image button code ended up looking like this (C and C sharp for example):</p>
+
+      <pre><code class="language-html">
+        <input type="image" src="./C.PNG" name="C" id="C"  style = "float: left; width: 6%; padding: 5px" height = "400">
+        <input type="image" src="./Sharp.PNG" name="C#" id="C#"  style = "float: left; width: 6%; padding: 5px" height = "250">
+      </code></pre>
     </div>
   </div>
 </div>
