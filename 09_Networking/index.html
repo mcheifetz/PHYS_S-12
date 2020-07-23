@@ -10,6 +10,8 @@
   <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/arduino-light.min.css">
   <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
   <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/arduino.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/JavaScript.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/html.min.js"></script>
   <script>hljs.initHighlightingOnLoad();</script>
   <link href="../style.css" rel="stylesheet">
 </head>
@@ -46,7 +48,7 @@
 
       <p>Once I finished testing this code to make sure it worked directly on the Firebase website, I moved on to making the website version with HTML and JavaScript. I again edited the Firebase LED code that I had for the other website. The first thing I did was change the on/off buttons to buttons corresponding to piano notes. I ended up changing that again later, so I'll go into more detail about that soon. I then edited the JavaScript code to work with the buttons and buzzer. I haven't had any prior experience with JavaScript, so I made sure to study the Firebase LED code to learn more about JavaScript so I could make sure to implement it correctly. I changed the <i>document.getElementById().addEventListener()</i> lines to work with each note, and then added JS functions to play each note. The functions actually changed the note status to a different note, which used the Huzzah to play that note on the buzzer. Here's an example of the JS (again, just using C as an example)</p>
 
-      <pre><code class="language-arduino">
+      <pre><code class="language-JavaScript">
       // Get a database reference to our blog
       var ref = firebase.database().ref("/");
 
