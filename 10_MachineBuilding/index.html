@@ -31,7 +31,7 @@
      
       <h4><b><u>Section 1: Building the Car</u></b></h4>
 
-      <p>The first thing I did was make a circuit consisting of of 2 stepper motors. I used the <a href = "https://nathanmelenbrink.github.io/intro-dig-fab/10_machines/machine.html">stepper motor tutorial</a> that our instructors provided to figure out how to wire the motors, and then used a breadboard to run both at the same time. The circuit ended up looking like this:</p>
+      <p>The first thing I did was make a circuit consisting of of 2 stepper motors. I used Mr. Hart's <a href = "https://roberthart56.github.io/SCFAB/SC_lab/Output_Devices/Motion/steppers.html">stepper motor tutorial</a> that our instructors provided to figure out how to wire the motors, and then used a breadboard to run both at the same time. The circuit ended up looking like this:</p>
 
       <div>
         <img src = "./circuit.png" class = "img-responsive margin" style = "float: left; width: 25%; padding: 5px" height = "350" alt = "circuit">
@@ -68,6 +68,150 @@
       <br>
 
       <h4><b><u>Section 2: Programming</u></b></h4>
+
+      <p>Now it was time to do the programming. I wanted to make my car unique programming-wise, so I decided to make two functions: one that would drive the car forwards or backwards a given number of cm, and another that would turn the car left or right a given number of degrees. First off was the <i>drive()</i> function.</p>
+
+      <p>Above my setup function, I defined some variables that would be crucial to my drive function. They can be seen below. One thing, I had no idea how to do pi in C. In Java it's just <i>Math.pi()</i>, but that doesn't apply to C. So I did some research and found <a href = "https://code.sololearn.com/cziLwdQ47a0c/#c">this site</a> that explained that I could get pi by writing <i>M_PI</i></p>
+
+      <pre><code class="language-arduino">
+      const int stepsPerRevolution = 200;  //200 for our steppers.
+      const int wheelRadius = 4;    //Wheel radius is 4 cm
+      const float wheelCircum =  2 * M_PI * wheelRadius;    //Wheel circum is 8pi
+      const float cmPerStep = wheelCircum / stepsPerRevolution;
+      </code></pre>
+
+      <p>Based on this information, I figured out that with my wheels that were 8 cm in diameter, each step moved the car about 0.1257 cm. Now it was time to write the drive function. The function passes in a parameter of desired cm for the car to travel. It then calculates the number of steps needed by dividing the desired cm by the cm traveled per step. It then assigns the stepsTaken variable to 0, as there haven't been any steps taken before the wheel turns. It then prints the number of steps needed to the Serial monitor so that I can see what's supposed to happen. Then, while the stepsTaken is less than the needed steps, the wheels turn 1 step and then delay for 1 ms. The reason they only turn one at a time is because the <i>Stepper.step()</i> function is blocking according to the <a href = "https://www.arduino.cc/en/Reference/StepperStep">Arduino documentation<a>. If the desired cm is greater than 0, which is forwards, Stepper1 (left wheel) steps -1, while Stepper2 (right wheel) steps 1. They are opposite because the motors are on opposite sides of the car and are therefore facing opposite dirctions. If the cm is less than 0, Stepper1 steps 1 and Stepper2 steps -1. The whole function looks like this:</p>
+
+      <pre><code class="language-arduino">
+      void drive(int cm) {
+        int steps = (int) (cm / cmPerStep);   //Number of steps is the desired CM divided by the CM per step
+        int stepsTaken = 0;   //Before it drives, it's taken 0 steps
+
+        Serial.print("Steps Needed: ");
+        Serial.println(abs(steps));
+
+        while (stepsTaken < abs(steps)) {
+          if (cm > 0){
+            Stepper1.step(-1), Stepper2.step(1); //First motor is negative for forward since it's facing the opposite direction of the other motor
+            delay(1);
+          }
+
+          else if (cm < 0){                      //else if, not else, because it shouldn't do anything if it's 0
+            Stepper1.step(1), Stepper2.step(-1); //First motor is pos for backwards
+            delay(1);
+          }
+
+          stepsTaken++;
+        }
+        
+        Serial.println();
+      }
+      </code></pre>
+
+      <p>After writing this function, I moved onto the <i>turn()</i> function. This function takes a certain number of degrees and turns either left or right. Just like with the drive function, I had to make some variables above the setup function. They can be seen below.</p>
+
+      <pre><code class="language-arduino">
+      const float distWheelToWheel = 20.0;    //Distance between each wheel, used for calculating arc length in turning
+      const float wheelToWheelCircleCircum = M_PI * distWheelToWheel;
+      </code></pre>
+
+      <p>Once I had these variables defined, I moved onto the function. I decided to make the point of rotation the midpoint between the wheels, so I knew ahead of time that both wheels would be turning. I knew that I would have to program it to move a certain distance, in this case an arc length along an imaginary circle between the wheels (hence the variables above). I haven't done Geometry in over a year so I did some quick reading <a href = "https://theengineeringmindset.com/arc-length-how-to-calculate/">here</a> to refresh myself on how to calculate the arc length of a circle. With that information, I started writing the function. It first calculates the arc length in cm along an imaginary circle between the two wheels. It then converts that to steps, much like the drive function. However, this is the total steps, ie. if only one wheel moved this would work. However, since both wheels are turning, I realized I had to divide this number by two to get the steps per wheel. It then mimics the drive function, assigning stepsTaken to 0 and printing the required number of steps. Next, there's a similar while loop to the drive function. The difference is that if turnDegrees is greater than 0, both motors step -1, and if turnDegreees is less than 0, both step 1. This time, they're both either pos or neg because it's turning; the wheels should be spinning in opposite directions. Here's the final function:</p>
+
+      <pre><code class="language-arduino">
+      void turn(int turnDegrees) {
+        float arcLengthCM = ((float) turnDegrees / 360) * wheelToWheelCircleCircum;
+        int steps = (int) (arcLengthCM / cmPerStep) / 2;  //Divided by 2 since each wheel is moving, so 2 wheels need to sum to a set num of steps
+        int stepsTaken = 0;   //Before it drives, it's taken 0 steps
+
+        Serial.print("Steps Needed (Per wheel): ");
+        Serial.print(abs(steps));
+        Serial.print(", Total Steps: ");
+        Serial.println(abs(steps * 2));
+
+        while (stepsTaken < abs(steps)) {
+          if (turnDegrees > 0){
+            Stepper1.step(-1), Stepper2.step(-1);  //Both pos since the wheels should be spinning opposite directions
+            delay(1);
+          }
+
+          else if (turnDegrees < 0){
+            Stepper1.step(1), Stepper2.step(1);
+            delay(1);
+          }
+
+          stepsTaken++;
+        }
+        
+        Serial.println();
+      }
+      </code></pre>
+
+      <p>With both functions written, there was one more function to make. In talking to Nathan during the lab, he suggested that I make it possible to pass in more than two values to the Serial Monitor so that the car could execute many drive/turn commands consecutively. I started by using Mr. Hart's <a href = "https://nathanmelenbrink.github.io/intro-dig-fab/10_machines/serial_step_setpoint3.zip">code</a> on how to pass many values to the Serial monitor and put them into an array. For my code, I first defined an array, driveNums, above my setup function, of length 100. I then made a function called <i>getDriveData()</i>, seen below. It takes each integer value from Serial and adds it to the driveNums array.</p>
+
+      <pre><code class = "language-arduino">
+      int getDriveData(){
+        int index = 0;   // index of data array  
+          
+        while (!Serial.available() ){;}           //Loop and do nothing until there is a serial character received.
+        
+        while(Serial.available()){                //Receive bytes and parse them into integers
+          driveNums[index] = Serial.parseInt();   //save these in the driveNums array, which is a global variable.
+          index++;
+        }
+        
+        return index - 1;                         //returns the number of integers received.
+      }
+      </code></pre>
+
+      <p>Next, I had to write the <i>loop()</i> function. I first assigned the integer numCommands to the value of <i>getDriveData()</i>, which was the length of the array. I then had a for loop that assigned the driveCM to the current array value and the turnDegrees to the following value. It increased 'i' by two at the end of each iteration so that it would always start on the current drive command. The loop looked like this:</p>
+
+      <pre><code class = "language-arduino">
+      void loop() {
+        int driveCM = 0;        //Initial drive forwards/backwards value is 0
+        int turnDegrees = 0;    //Initial turn degrees value is 0
+
+        Serial.println("\nRESET");
+
+        int numCommands = getDriveData();           //calls the function that collects serial data.
+        
+        for (int i = 0; i < numCommands; i += 2){
+          driveCM = driveNums[i];
+          Serial.print("Driving ");
+          Serial.print(abs(driveCM));  //abs() since it should say 20 cm left instead of -20 cm left
+          Serial.print(" cm ");
+          
+          if (driveCM >= 0) {
+            Serial.println("forwards");       //If driveCM is pos then print how many CM forwards
+          }
+          else {
+            Serial.println("backwards");    //If driveCM is neg then print how many CM backkwards
+          }
+
+          drive(driveCM);
+
+          turnDegrees = driveNums[i + 1];
+
+          Serial.print("Turning ");
+          Serial.print(abs(driveCM));
+          Serial.print(" degrees ");
+
+          if (turnDegrees >= 0) {
+            Serial.println("right");       //If turnDegrees is pos then print how many CM right
+          }
+          else {
+            Serial.println("left");    //If turnDegrees is neg then print how many CM left
+          }
+
+          delay(500);  //Delay half a second in between driving and turning
+          turn(turnDegrees);
+        }
+      }
+      </code></pre>
+
+      <p>With these functions made and tested, it was time for testing. But here's where the problems arose.</p>
+
+      
+         
     </div>
   </div>
 
