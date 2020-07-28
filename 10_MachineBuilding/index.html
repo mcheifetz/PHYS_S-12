@@ -191,26 +191,68 @@
 
           turnDegrees = driveNums[i + 1];
 
-          Serial.print("Turning ");
-          Serial.print(abs(driveCM));
-          Serial.print(" degrees ");
+          if(turnDegrees != 0){
+            Serial.print("Turning ");
+            Serial.print(abs(turnDegrees));
+            Serial.print(" degrees ");
 
-          if (turnDegrees >= 0) {
-            Serial.println("right");       //If turnDegrees is pos then print how many CM right
-          }
-          else {
-            Serial.println("left");    //If turnDegrees is neg then print how many CM left
+            if (turnDegrees >= 0) {
+              Serial.println("right");       //If turnDegrees is pos then print how many CM right
+            }
+            else {
+              Serial.println("left");    //If turnDegrees is neg then print how many CM left
+            }
+
+            delay(400);
+            turn(turnDegrees);
           }
 
-          delay(500);  //Delay half a second in between driving and turning
-          turn(turnDegrees);
+          delay(100);
         }
       }
       </code></pre>
 
       <p>With these functions made and tested, it was time for testing. But here's where the problems arose.</p>
 
-      
+      <br>
+
+      <h4><b><u>Section 3: Testing/Troubleshooting</u></b></h4>
+
+      <p>The first issue I had in testing was that whenever I entered values for the car to drive, the wheel would barely spin. I assumed that this was because I was running 5V even though the stepper motors work better with 12V. I tried to fix this using the 9V power supply from out kit, but I had no idea how badly this would turn out. Soon after plugging in the power supply, the motor drivers both got super hot, to the point where I tried to pick one up to fix wiring and nearly burned my finger. Just as I dropped the motor driver, it started smoking and my whole basement smelled like something was burning. I freaked out, and immediately yanked out the power supply. When I tried to re-run the program with 5V, one motor no longer worked. I thought it was a wiring problem, but after a few minutes of checking the wiring, I became suspicious that the 9V had fried the motor driver. I replaced it with my extra and, sure enough, the wheel spun again. So I realized that I'd have to stick with 5V for the remainder of testing, which was already a limitation. But my wheels still weren't spinning as much as I wanted them to. Victoria suggested I try calling the Stepper.step() function directly to see if something was wrong with my drive function, but that still didn't work. I examined all of my code closely and realized I had made a stupid mistake. In the setup() function, I had meant to set the speed of each motor to 50. But I had slipped and added an extra 0 to each, setting the speed to 500. Whoops! Once I changed that, my wheels ran smoothly, at least when I was holding the car in the air (I wanted to test without friction yet). Once I tried testing on the ground, I ran into my biggest problem yet. Since I didn't have any big Lego wheels in my house (which I originally wanted to use as wheels), I had to use cardboard. I hadn't thought of this ahead of time, but they barely got any traction when I tried to run. I assumed this was partly becuase I was on a rug and didn't have any way to increase traction on the wheels. I tried a lot of things to solve this, here's a short list:</p>
+
+      <ul>
+        <li>I put rubber bands around each wheel to increase traction</li>
+        <li>I tried running it on hardwood floor to see if that would help. It did, but not by much.</li>
+        <li>I tried running it on an old <a href = "https://www.amazon.com/Anki-OVERDRIVE-Expansion-Track-Speed/dp/B00V6951Z8">Anki Overdrive track</a>. I assumed since that it was designed for cars to run on it, it would work the best. I was right about that, but the results still weren't great. For example, when I tried to drive 10 cm forwards, it only went about 2.5 cm.
+      </ul>
+
+      <p>At this point, I searched my house for about half an hour and was unable to find any materials that could work better as wheels. I knew that my whole car worked, at least it would have if I had better wheels, so I was still happy about that. I talked to Nathan, and he suggested that I just figure out ways to prove that my functions worked. I started with the <i>drive()</i> and <i>getDriveData()</i> functions. I made a mark on one of the wheels and told it to drive 25 cm forwards and then 25 cm backwards. Since the diamater of each wheel was 8 cm, the circumference was 8pi, or about 25.133 cm. So 25 cm would be the best test, but not exactly a full turn. I had two ways to test these functions, and I'll show both below. First I could input the following values into the Serial monitor: 25 0 -25 0. These would drive the car forwards 25 cm and then backwards 25 cm (0s are for turn function). Since this is basically two full rotations, the necessary steps for each should be 200, or at least one or two less than than 200. Here's the Serial Output when this was ran:</p>
+
+      <div>
+        <img src = "./SerialMonitorDriving.png" class = "img-responsive margin" style = "float: left; width: 200px; padding: 5px" height = "200" alt = "SMDriving">
+      </div>
+    </div>
+
+    <div class = "col-md-12">
+      <p>The next way to test this was using the mark on the wheel that I had made. If my code was correct, this would spin forwards and then backwards, and the mark would end up at the same place at the end of each rotation. I tested it, and it worked! In the video, you can see that it stops a bit short on the forwards rotation. That's only because it's only going 25 cm, which isn't the exact circumference. You can see that after going backwards it stops at the exact starting point. Here's the video:</p>
+
+      <div>
+        <video controls style = "width:25%; min-width:150px"><source src = "./DrivingVid.mp4" type = "video/mp4"></video>
+      </div>
+    </div>
+
+    <div class = "col-md-12">
+      <p>Once I had tested that my <i>drive()</i> and <i>getDriveData()</i> functions worked properly, I moved onto testing my <i>turn()</i> function. I knew I couldn't video this one, since turns don't correspond to exact rotations in the same way that the drive ones do. So I decided to manually remake the circle, figure out the arc length of a few angles, convert that to steps, and then compare it to the Serial output. If my function was correct, my calculated values would match the number of steps in the Serial output. I calculated the number of steps in a google sheet and compared it to the Serial output. The results can be seen below. The Serial monitor steps are slightly lower (but only by 1 or 2) than the sheet, which is simply because of rounding and the number of decmial points used.</p>
+
+      <div>
+        <img src = "./Sheet.png" class = "img-responsive margin" style = "float: left; width: 50%; padding: 5px" height = "250" alt = "Sheet">
+        <img src = "./SerialMonitorTurning.png" class = "img-responsive margin" style = "float: left; width: 50%; padding: 5px" height = "250" alt = "SMTurning">
+      </div>
+    </div>
+
+    <div class = "col-md-12">
+      <p>Although my car didn't work as well as I wanted, I'm still happy with how I did, especially with the code!</p>
+
          
     </div>
   </div>
