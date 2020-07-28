@@ -34,7 +34,7 @@
       <p>The first thing I did was make a circuit consisting of of 2 stepper motors. I used Mr. Hart's <a href = "https://roberthart56.github.io/SCFAB/SC_lab/Output_Devices/Motion/steppers.html">stepper motor tutorial</a> that our instructors provided to figure out how to wire the motors, and then used a breadboard to run both at the same time. The circuit ended up looking like this:</p>
 
       <div>
-        <img src = "./circuit.png" class = "img-responsive margin" style = "float: left; width: 25%; padding: 5px" height = "350" alt = "circuit">
+        <img src = "./circuit.png" class = "img-responsive margin" style = "float: left; width: 22%; padding: 5px" height = "500" alt = "circuit">
       </div>
     </div>
 
@@ -42,7 +42,7 @@
       <p>After setting up the circuit, I moved on to making the wheels. To do so, I used a pair of calipers I found in the storage room of my house to trace four circles of 8 cm diamater on a piece of cardboard. Once I cut the circles out, I made a small hole the center of each with my screwdriver and then pushed two onto the motors to make the hole big enough to work with a motor. I then had to put two wheels onto the stepper motors. To make sure the wheel was straight on the axle, I cut out two small squares of cardboard per wheel and put them on the motor first. I then placed the wheel on top and hot glued it to the axle using the new hot glue gun that I got. The wheels and motors ended up looking like this:</p>
 
       <div>
-        <img src = "./WheelsAndMotors.png" class = "img-responsive margin" style = "float: left; width: 25%; padding: 5px" height = "350" alt = "WheelsAndMotors">
+        <img src = "./WheelsAndMotors.png" class = "img-responsive margin" style = "float: left; width: 25%; padding: 5px" height = "400" alt = "WheelsAndMotors">
       </div>
     </div>
 
@@ -50,7 +50,7 @@
       <p>After testing to make sure the wheels spun, I moved on to building the actual car. I first cut out a sheet of cardboard to act as the car body. I then cut out two squares of cardboard for the motors to rest on. I used the hot glue gun to attach the squares to the body, and then did the same for the motors to the squares of cardboard. Once that was all attached, I reached my first major problem: attaching the back wheels in a way that they would actually spin. My first attempt was to hot glue the axle (bbq skewer stick) to the body itself and put glue around the wheels so that they could spin but not move, as there would be glue on either side. The issue with this was that the wheels still had some room between them and the glue, so it was very wobbly, and I had to rethink my idea. The original, failed, back wheels looked like this:</p>
 
       <div>
-        <img src = "./FailedWheels.png" class = "img-responsive margin" style = "float: left; width: 25%; padding: 5px" height = "350" alt = "FailedWheels">
+        <img src = "./FailedWheels.png" class = "img-responsive margin" style = "float: left; width: 22%; padding: 5px" height = "400" alt = "FailedWheels">
       </div>
     </div>
 
@@ -229,7 +229,7 @@
       <p>At this point, I searched my house for about half an hour and was unable to find any materials that could work better as wheels. I knew that my whole car worked, at least it would have if I had better wheels, so I was still happy about that. I talked to Nathan, and he suggested that I just figure out ways to prove that my functions worked. I started with the <i>drive()</i> and <i>getDriveData()</i> functions. I made a mark on one of the wheels and told it to drive 25 cm forwards and then 25 cm backwards. Since the diamater of each wheel was 8 cm, the circumference was 8pi, or about 25.133 cm. So 25 cm would be the best test, but not exactly a full turn. I had two ways to test these functions, and I'll show both below. First I could input the following values into the Serial monitor: 25 0 -25 0. These would drive the car forwards 25 cm and then backwards 25 cm (0s are for turn function). Since this is basically two full rotations, the necessary steps for each should be 200, or at least one or two less than than 200. Here's the Serial Output when this was ran:</p>
 
       <div>
-        <img src = "./SerialMonitorDriving.PNG" class = "img-responsive margin" style = "float: left; width: 200px; padding: 5px" height = "200" alt = "SMDriving">
+        <img src = "./SerialMonitorDriving.PNG" class = "img-responsive margin" style = "float: left; width: 250px; padding: 5px" height = "200" alt = "SMDriving">
       </div>
     </div>
 
@@ -246,7 +246,7 @@
 
       <div>
         <img src = "./Sheet.PNG" class = "img-responsive margin" style = "float: left; width: 50%; padding: 5px" height = "250" alt = "Sheet">
-        <img src = "./SerialMonitorTurning.PNG" class = "img-responsive margin" style = "float: left; width: 50%; padding: 5px" height = "250" alt = "SMTurning">
+        <img src = "./SerialMonitorTurning.PNG" class = "img-responsive margin" style = "float: left; width: 250px; padding: 5px" height = "250" alt = "SMTurning">
       </div>
     </div>
 
