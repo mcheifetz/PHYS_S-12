@@ -53,16 +53,15 @@
 
       <p>The first part of the process was to design the piano's components in Fusion 360. Below is information about how I designed each component.</p>
 
-      <h5><b>The Keys:</b></h4>
+      <h5><b>The Keys:</b></h5>
       
       <p>The first thing I did was find <a href = https://www.thingiverse.com/thing:17772>this</a> set of piano keys on Thingiverse. I originally thought it would be best to 3D print the full models of my keys, but after an initial design, it turned out that the print would take over <i>18 hours</i>. After talking to Nathan and Victoria, we decided it would be best to laser cut them instead. That's where my new designs began. I took the original key design from Thingiverse and retraced it to give me more design freedom. This was a necessary step since I imported the keys as a mesh body, which was extrememly difficult to edit, plus it wouldn't work for laser cutting. Once I had the keys traced, I was ready to export the design to be laser cut. Here's how the final design turned out.</p>
 
       <iframe src="https://students8326.autodesk360.com/shares/public/SH56a43QTfd62c1cd9682338b96108dcd63c?mode=embed" width="640" height="480" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true" frameborder="0"></iframe>
 
-      <p>However, I needed to split up the black keys and white keys for laser cutting, as they would be cut in different colors. While designing the keys, I had made the white keys their own sketch and the black keys their own sketch. From there, I exported each as a .dxf file to prepare them for laser cutting. Here are the .dxf and .stl files for the piano keys:</p>
+      <p>However, I needed to split up the black keys and white keys for laser cutting, as they would be cut in different colors. While designing the keys, I had made the white keys their own sketch and the black keys their own sketch. From there, I exported each as a .dxf file to prepare them for laser cutting. Here is the .dxf files for the piano keys:</p>
 
       <ul>
-        <li>Full piano keys STL: <a download href = './FinalProjectKeys.stl'>Final Keys</a></li>
         <li>White keys DXF: <a download href = './White_Keys.dxf'>White Keys</a></li>
         <li>Black keys DXF: <a download href = './Black_Keys.dxf'>Black Keys</a></li>
       </ul>
@@ -71,24 +70,23 @@
 
       <br>
 
-      <h5><b>The Box:</b></h4>
+      <h5><b>The Box:</b></h5>
       
       <p>I knew that I would need a box to fit all of my wires, the metro, the buzzer, and the buttons. During one of our class meetings, someone mentioned using a website to automatically create a box that came ready to be laser cut. I inquired about this and Nathan directed me to <a href = "https://en.makercase.com/#/basicbox">Makercase</a>, where I input the dimensions for my box. Since my piano keys totaled 165 mm in length and my Metro microcontroller was about 54 mm wide, I inputted the dimensions for my box as 165 mm x 25.5 mm x 62 mm. Once that was finalized, I downloaded it as a .svg and inserted it into Fusion 360. At this point, I had to add some additional things to the box. On the front face, I added twelve 1.5 mm holes for each piece of copper tape (1 piece of tape per key). And on the top face, I added a circular hole in the middle for the buzzer, and two square holes on either side of the buzzer for the buttons. Once that was completed, the design was finished. Here's how the final design looked:</p>
 
       <iframe src="https://students8326.autodesk360.com/shares/public/SH56a43QTfd62c1cd96823206ae6f81adfed?mode=embed" width="640" height="480" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"  frameborder="0"></iframe>
 
-      <p>At this point, I was ready to laser cut the box. I exported as a .dxf and sent it over to the instructors. Here are the .dxf and .stl files for the box:</p>
+      <p>At this point, I was ready to laser cut the box. I exported as a .dxf and sent it over to the instructors. Here is the .dxf file for the box:</p>
 
       <ul>
-        <li>Box STL: <a download href = './FinalProjectKeys.stl'>Final Keys</a></li>
         <li>Box DXF: <a download href = './Box_Final.dxf'>White Keys</a></li>
       </ul>
 
-      <p>Now that the box was finished, I moved onto the next part.</p>
+      <p>Now that the box was finished, I moved onto the next component of my project.</p>
 
       <br>
 
-      <h5><b>The Microcontroller Holder Pins:</b></h4>
+      <h5><b>The Microcontroller Holder Pins:</b></h5>
       
       <p>I remembered from watching the <a href = "https://www.youtube.com/watch?v=E0bhdr84FNU">arduino enclosure tutorial</a> for homework one class that it's better to not let your microcontroller touch the ground. However, since I don't know the exact dimensions of where the holes are on the metro, I decided it would be best to 3D print the pins and attach the via hot glue later. I first measured the diameter of the metro's holes, which was 3.2 mm. Following along with the tutorial, I first sketched a circle that was 2.8 mm (again, allowing for some wiggle room). I then extruded that 20 mm. Next, I made another sketch, this time with a circle that was 3.2 mm, the dimension of the holes in the microcontroller. This was so that I could fit it through the smaller cylinder and have it rest on this larger one. I then extruded that 4 mm, per the tutorial's suggestion. Once the whole thing was extruded, I chamfered the top of the pins to allow the microcontroller to easily slide on. Once I finished these pins, I added in hollow cylinders (that I have resting on top of the metro) for the other pins to slide into, preventing the microcontroller from falling out. Here's the final design for the pins:</p>
 
@@ -101,9 +99,13 @@
       </ul>
       </p>
 
+      <p>With the pins completed, I had one small component left to design.</p>
+
       <br>
 
+      <h5><b>The Platform:</b></h5>
 
+      <p>Since each key was being cut individually, I knew that I needed a platform on which I would glue all of the keys.</p>
 
       <br>
     </div>
