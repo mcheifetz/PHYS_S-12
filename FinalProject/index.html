@@ -121,14 +121,15 @@
     <div class = "col-md-12">
       <h4><b><u>Designing the Circuit</u>:</b></h4>
 
-      <p>The next part of my project was designing the circuit. I thought it would be easy to just plug in the copper tape but soon realized it was much more complicated that that. Since each piece of tape needs to connect to a charge pin and a sense pin, it seemed like I would need 24 pins for the 12 pieces of tape, plus an additional three pins for the buzzer and buttons. This was a big issue: the Metro only has 20 pins (0-13, A0-A5). I talked to Nathan, and he told me that it was possible to wire multiple pieces of tape to one charge pin. I knew I would need to solder wires together to do so, and I'll explain more about that in the Build Process section. To make sure I knew how the circuit would work, I made a preliminary sketch consisting of just two keys that shows how they connect to one charge pin. The circuit sketch looked like this:</p>
+      <p>The next part of my project was designing the circuit. I thought it would be easy to just plug in the copper tape but soon realized it was much more complicated that that. Since each piece of tape needs to connect to a charge pin and a sense pin, it seemed like I would need 24 pins for the 12 pieces of tape, plus an additional three pins for the buzzer and buttons. This was a big issue: the Metro only has 20 pins (0-13, A0-A5). I talked to Nathan, and he told me that it was possible to wire multiple pieces of tape to one charge pin. I knew I would need to solder wires together to do so, and I'll explain more about that in the Build Process section. To make sure I knew how the circuit would work, I made a preliminary sketch consisting of just two keys that shows how they connect to one charge pin. The wire from the tape, a resistor, and another wire are saudered togehter at a connected point. The additional wire is then connected directly to the key's send pin. Next, the resistor is soldered to another wire. The two wires soldered to the resitors connect together and are soldered with a final wire which then connects to the charge pin. Doing this enabled me to reduce the number of pins I needed, which was very helpful. The circuit sketch looked like this:</p>
 
       <div>
-        <img src = "./PrelimSketch.png" class = "img-responsive margin" style = "float: left; width: 25%; padding: 5px" height = "400" alt = "PrelimSketch">
+        <img src = "./PrelimSketch.png" class = "img-responsive margin" style = "float: left; width: 40%; padding: 5px" height = "550" alt = "PrelimSketch">
       </div>
     </div>
 
     <div class = "col-md-12">
+      <p></p>
 
       <br>
     </div>
