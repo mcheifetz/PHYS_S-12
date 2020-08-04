@@ -35,6 +35,17 @@
     <div class = "col-md-12">
       <h4><b><u>Why I Chose This Project</u>:</b></h4>
       <p>Not only do I love music, but I've played piano ever since I was five years old. It's one of my favorite hobbies. So when I was thinking of ideas for my final project, a piano was one of the first things I brainstormed. I talked with Nathan, Victoria, and Rob, and I was thrilled when they all told me my idea was plausible. I originally wanted to just have the keys press down on some buttons, but I soon realized that would be too tedious and not really display how much I've learned throughout this course. So I decided to use copper tape to sense touch, which was a significantly better idea. In the end, I'm really glad about how well it turned out. But in the planning phase, I had no idea how much work this piano would really require.</p>
+
+      <br>
+    </div>
+
+    <div class = "col-md-12">
+      <h4><b><u>How It Works</u>:</b></h4>
+
+      <p></p>
+
+      <br>
+
     </div>
 
     <div class = "col-md-12">
@@ -45,24 +56,88 @@
       <h5><b>The Keys:</b></h4>
       
       <p>The first thing I did was find <a href = https://www.thingiverse.com/thing:17772>this</a> set of piano keys on Thingiverse. I originally thought it would be best to 3D print the full models of my keys, but after an initial design, it turned out that the print would take over <i>18 hours</i>. After talking to Nathan and Victoria, we decided it would be best to laser cut them instead. That's where my new designs began. I took the original key design from Thingiverse and retraced it to give me more design freedom. This was a necessary step since I imported the keys as a mesh body, which was extrememly difficult to edit, plus it wouldn't work for laser cutting. Once I had the keys traced, I was ready to export the design to be laser cut. Here's how the final design turned out.</p>
+
+      <iframe src="https://students8326.autodesk360.com/shares/public/SH56a43QTfd62c1cd9682338b96108dcd63c?mode=embed" width="640" height="480" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true" frameborder="0"></iframe>
+
+      <p>However, I needed to split up the black keys and white keys for laser cutting, as they would be cut in different colors. While designing the keys, I had made the white keys their own sketch and the black keys their own sketch. From there, I exported each as a .dxf file to prepare them for laser cutting. Here are the .dxf and .stl files for the piano keys:</p>
+
+      <ul>
+        <li>Full piano keys STL: <a download href = './FinalProjectKeys.stl'>Final Keys</a></li>
+        <li>White keys DXF: <a download href = './White_Keys.dxf'>White Keys</a></li>
+        <li>Black keys DXF: <a download href = './Black_Keys.dxf'>Black Keys</a></li>
+      </ul>
+
+      <p>With the keys done, it was time to move onto designing my next component.</p>
+
+      <br>
+
+      <h5><b>The Box:</b></h4>
+      
+      <p>I knew that I would need a box to fit all of my wires, the metro, the buzzer, and the buttons. During one of our class meetings, someone mentioned using a website to automatically create a box that came ready to be laser cut. I inquired about this and Nathan directed me to <a href = "https://en.makercase.com/#/basicbox">Makercase</a>, where I input the dimensions for my box. Since my piano keys totaled 165 mm in length and my Metro microcontroller was about 54 mm wide, I inputted the dimensions for my box as 165 mm x 25.5 mm x 62 mm. Once that was finalized, I downloaded it as a .svg and inserted it into Fusion 360. At this point, I had to add some additional things to the box. On the front face, I added twelve 1.5 mm holes for each piece of copper tape (1 piece of tape per key). And on the top face, I added a circular hole in the middle for the buzzer, and two square holes on either side of the buzzer for the buttons. Once that was completed, the design was finished. Here's how the final design looked:</p>
+
+      <iframe src="https://students8326.autodesk360.com/shares/public/SH56a43QTfd62c1cd96823206ae6f81adfed?mode=embed" width="640" height="480" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"  frameborder="0"></iframe>
+
+      <p>At this point, I was ready to laser cut the box. I exported as a .dxf and sent it over to the instructors. Here are the .dxf and .stl files for the box:</p>
+
+      <ul>
+        <li>Box STL: <a download href = './FinalProjectKeys.stl'>Final Keys</a></li>
+        <li>Box DXF: <a download href = './Box_Final.dxf'>White Keys</a></li>
+      </ul>
+
+      <p>Now that the box was finished, I moved onto the next part.</p>
+
+      <br>
+
+      <h5><b>The Microcontroller Holder Pins:</b></h4>
+      
+      <p>I remembered from watching the <a href = "https://www.youtube.com/watch?v=E0bhdr84FNU">arduino enclosure tutorial</a> for homework one class that it's better to not let your microcontroller touch the ground. However, since I don't know the exact dimensions of where the holes are on the metro, I decided it would be best to 3D print the pins and attach the via hot glue later. I first measured the diameter of the metro's holes, which was 3.2 mm. Following along with the tutorial, I first sketched a circle that was 2.8 mm (again, allowing for some wiggle room). I then extruded that 20 mm. Next, I made another sketch, this time with a circle that was 3.2 mm, the dimension of the holes in the microcontroller. This was so that I could fit it through the smaller cylinder and have it rest on this larger one. I then extruded that 4 mm, per the tutorial's suggestion. Once the whole thing was extruded, I chamfered the top of the pins to allow the microcontroller to easily slide on. Once I finished these pins, I added in hollow cylinders (that I have resting on top of the metro) for the other pins to slide into, preventing the microcontroller from falling out. Here's the final design for the pins:</p>
+
+      <iframe src="https://students8326.autodesk360.com/shares/public/SH56a43QTfd62c1cd9681826077fb4dec8ba?mode=embed" width="640" height="480" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"  frameborder="0"></iframe>
+
+      <p>Here are the links to the microcontroller holder pins files:
+      <ul>
+        <li><a download href = './Microcontroller_Holder_Pins-v5.stl'>STL file (.stl)</a></li>
+        <li><a download href = './Microcontroller_Holder_Pins-v5_0.15mm_PLA_MK3S_27m.gcode'>Sliced gcode file (.gcode)</a></li>
+      </ul>
+      </p>
+
+      <br>
+
+
+
+      <br>
     </div>
 
     <div class = "col-md-12">
       <h4><b><u>Designing the Circuit</u>:</b></h4>
 
       <p></p>
+
+      <br>
     </div>
 
     <div class = "col-md-12">
       <h4><b><u>The Build Process</u>:</b></h4>
 
       <p></p>
+
+      <br>
     </div>
 
     <div class = "col-md-12">
       <h4><b><u>The Code</u>:</b></h4>
 
       <p></p>
+
+      <br>
+    </div>
+
+    <div class = "col-md-12">
+      <h4><b><u>What I Learned</u>:</b></h4>
+
+      <p></p>
+
+      <br>
     </div>
 
   </div>
