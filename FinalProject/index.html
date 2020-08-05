@@ -246,22 +246,109 @@
       <p>Now that I had the wires soldered on, I moved onto attaching them to the metro. First, I hot glued the wires down on the roos of the box to reduce the stress on the end of the wire, which was most susceptible to breaking. Next, I plugged the wires into their given ports on the metro and connected each button and the buzzer to its own ground, as the board has 3 ground ports. This easily allows me to replace a button or the buzzer if one of them breaks, without having to worry about soldering keeping the three of them attached. The <i>final</i> wiring looked like this:</p>
 
       <div>
-        <img src = "./FinalBuzzerButtons.png" class = "img-responsive margin" style = "float: left; width: 35%; padding: 5px" height = "500" alt = "FinalBuzzerButtons">
+        <img src = "./FinalBuzzerButtons.png" class = "img-responsive margin" style = "float: left; width: 45%; padding: 5px" height = "650" alt = "FinalBuzzerButtons">
       </div>
     </div>
 
     <div class = "col-md-12">
-
-      <br>
-    </div>
-
-
-    <div class = "col-md-12">
       <h4><b><u>The Code</u>:</b></h4>
 
-      <p></p>
+      <p>The code for my project is arguably the most important part. I didn't want to make the code just to play a note when I press a piece of copper tape; I wanted it to do more. So I decided to also make it possible to play 2 pre-made songs simply by double clicking a button. In the end, the code was quite lengthy, so I watched <a href = "https://www.youtube.com/watch?v=dSAb3LZBHp0">this</a> tutorial and learned how to split my code up into different tabs. The first tab contains global variables/constants, the <i>setup()</i> function, and the <i>loop()</i> function</p>. Another tab looks for a button press, and the third and fourth play a song depending on which button was double clicked. I'll explain how the code works (mostly) tab by tab.
 
       <br>
+
+      <h5><b>Tab 1: The Main Code</b></h5>
+
+      <p>The first tab contains the bulk of the code for my project. Early on, I decided to make it possible to change the current octave by pressing the left or right button. Because of that, I made an array for each note with frequencies corresponding to octave using <a href = "https://pages.mtu.edu/~suits/notefreqs.html">this</a> frequency chart. It's imperative that I mention that the buzzer can't go low enough to play notes in the first octave, so the first element in each array is actually for octave 2; they go up to octave 7. Along with these arrays, I also set the starting octave to 4, which starts on middle C, a great way to orient the piano. Here's the code for this section:</p>
+
+      <pre><code class="language-arduino">
+      //Note constants arrays
+              //Octave:  2     3     4     5     6       7
+              //No octave 1 because the frequencies were too low to be placed
+      const int C[7] =  {65,  131,  262,  523,  1047,  2093};
+      const int CS[7] = {69,  139,  277,  554,  1109,  2217};
+      const int D[7] =  {73,  147,  294,  587,  1175,  2349};
+      const int DS[7] = {78,  156,  311,  622,  1245,  2489};
+      const int E[7] =  {82,  165,  329,  659,  1319,  2637};
+      const int F[7] =  {87,  175,  349,  698,  1397,  2794};
+      const int FS[7] = {93,  185,  370,  740,  1480,  2960};
+      const int G[7] =  {98,  196,  392,  784,  1568,  3136};
+      const int GS[7] = {104, 208,  415,  831,  1661,  3322};
+      const int A[7] =  {110, 220,  440,  880,  1760,  3520};
+      const int AS[7] = {117, 233,  466,  932,  1867,  3729};
+      const int B[7] =  {123, 246,  493,  988,  1976,  3951};
+
+      //Initially, the starting octave is 4 (starts on middle C)
+      int curOctave = 4;
+      </code></pre>
+
+      <p>The next thing I did was define the sensors for each piece of copper tape. I split them up into groups of three, as there are three notes to a charge pin.</p>
+
+      <pre><code class="language-arduino">
+      //Defining sensors for each piece of copper tape. 12 total (1 for each note)
+      //Groups of 3 notes attached to one charge pin
+      CapacitiveSensor C_sensor = CapacitiveSensor(11, 12); //11 is charge pin.  12 is sense pin.
+      CapacitiveSensor CS_sensor = CapacitiveSensor(11, 10);
+      CapacitiveSensor D_sensor = CapacitiveSensor(11, 13);
+
+      CapacitiveSensor DS_sensor = CapacitiveSensor(7, 9);
+      CapacitiveSensor E_sensor = CapacitiveSensor(7, 8);
+      CapacitiveSensor F_sensor = CapacitiveSensor(7, 6);
+
+      CapacitiveSensor FS_sensor = CapacitiveSensor(3, 5);
+      CapacitiveSensor G_sensor = CapacitiveSensor(3, 4);
+      CapacitiveSensor GS_sensor = CapacitiveSensor(3, 2);
+
+      CapacitiveSensor A_sensor = CapacitiveSensor(A5, 1);
+      CapacitiveSensor AS_sensor = CapacitiveSensor(A5, 0);
+      CapacitiveSensor B_sensor = CapacitiveSensor(A5, A3);
+      </code></pre>
+
+      <p>Next, I defined the pin for the buzzer, and the pins/starting states for the buttons:</p>
+
+      <pre><code class="language-arduino">
+      //Defining the pin for the buzzer
+      const int buzzerPin = A1;
+
+      //Defining the pins and states of the buttons
+      const int buttonOnePin = A0;
+      int buttonOneState = 0;
+
+      const int buttonTwoPin = A2;
+      int buttonTwoState = 0;
+      </code></pre>
+
+      <p>Those are all the global variables I had that were used in this tab. Next, I worked on the <i>setup()</i> function. It's relatively simple: I just setup the buzzer pin as output and the button pins as input pullup. I needed to do input pullup since I didn't have any resistors wired to my buttons. Doing so enables the internal pullup resistor in the pin, allowing the button to work properly. I originally didn't know about this, which led to an issue where the button only worked when I touched the pin on the bottom of it, not when I clicked it. I talked to Nathan during lab time and he told me about using input pullup, which fixed the problem. Here's the full <i>setup()</i> function:</p>
+
+      <pre><code class="language-arduino">
+      void setup() {
+        //Setup buzzer pin mode as output
+        pinMode(buzzerPin, OUTPUT);
+
+        //Setup button pin modes as input
+        pinMode(buttonOnePin, INPUT_PULLUP);
+        pinMode(buttonTwoPin, INPUT_PULLUP);
+      }
+      </code></pre>
+
+      <p>Next I have the <i>loop()</i> section of my code, which contains most of the actual note playing. I started it by defining the sensor values for each note:</p>
+
+      <pre><code class="language-arduino">
+      long C_sensorValue = C_sensor.capacitiveSensor(1000);  
+      long CS_sensorValue = CS_sensor.capacitiveSensor(1000);  
+      long D_sensorValue = D_sensor.capacitiveSensor(1000);  
+      long DS_sensorValue = DS_sensor.capacitiveSensor(1000);  
+      long E_sensorValue = E_sensor.capacitiveSensor(1000);  
+      long F_sensorValue = F_sensor.capacitiveSensor(1000);  
+      long FS_sensorValue = FS_sensor.capacitiveSensor(1000);  
+      long G_sensorValue = G_sensor.capacitiveSensor(1000);  
+      long GS_sensorValue = GS_sensor.capacitiveSensor(1000);  
+      long A_sensorValue = A_sensor.capacitiveSensor(1000);  
+      long AS_sensorValue = AS_sensor.capacitiveSensor(1000);  
+      long B_sensorValue = B_sensor.capacitiveSensor(1000);    
+      </code></pre>
+
+
     </div>
 
 
