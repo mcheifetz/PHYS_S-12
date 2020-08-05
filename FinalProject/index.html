@@ -253,7 +253,7 @@
     <div class = "col-md-12">
       <h4><b><u>The Code</u>:</b></h4>
 
-      <p>The code for my project is arguably the most important part. I didn't want to make the code just to play a note when I press a piece of copper tape; I wanted it to do more. So I decided to also make it possible to play 2 pre-made songs simply by double clicking a button. In the end, the code was quite lengthy, so I watched <a href = "https://www.youtube.com/watch?v=dSAb3LZBHp0">this</a> tutorial and learned how to split my code up into different tabs. The first tab contains global variables/constants, the <i>setup()</i> function, and the <i>loop()</i> function</p>. Another tab looks for a button press, and the third and fourth play a song depending on which button was double clicked. I'll explain how the code works (mostly) tab by tab.
+      <p>The code for my project is arguably the most important part. I didn't want to make the code just to play a note when I press a piece of copper tape; I wanted it to do more. So I decided to also make it possible to play 2 pre-made songs simply by double clicking a button. In the end, the code was quite lengthy, so I watched <a href = "https://www.youtube.com/watch?v=dSAb3LZBHp0">this</a> tutorial and learned how to split my code up into different tabs. The first tab contains global variables/constants, the <i>setup()</i> function, and the <i>loop()</i> function. Another tab looks for a button press, and the third and fourth play a song depending on which button was double clicked. I'll explain how the code works (mostly) tab by tab.</p>. 
 
       <br>
 
@@ -304,7 +304,7 @@
       CapacitiveSensor B_sensor = CapacitiveSensor(A5, A3);
       </code></pre>
 
-      <p>Next, I defined the pin for the buzzer, and the pins/starting states for the buttons:</p>
+      <p>Next, I defined the pin for the buzzer and the pins/starting states for the buttons:</p>
 
       <pre><code class="language-arduino">
       //Defining the pin for the buzzer
@@ -318,7 +318,7 @@
       int buttonTwoState = 0;
       </code></pre>
 
-      <p>Those are all the global variables I had that were used in this tab. Next, I worked on the <i>setup()</i> function. It's relatively simple: I just setup the buzzer pin as output and the button pins as input pullup. I needed to do input pullup since I didn't have any resistors wired to my buttons. Doing so enables the internal pullup resistor in the pin, allowing the button to work properly. I originally didn't know about this, which led to an issue where the button only worked when I touched the pin on the bottom of it, not when I clicked it. I talked to Nathan during lab time and he told me about using input pullup, which fixed the problem. Here's the full <i>setup()</i> function:</p>
+      <p>Those are all the global variables that are used in this tab. Next, I worked on the <i>setup()</i> function. It's relatively simple: I just setup the buzzer pin as output and the button pins as input pullup. I needed to do input pullup since I didn't have any resistors wired to my buttons. Doing so enables the internal pullup resistor in the pin, allowing the button to work properly. I originally didn't know about this, which led to an issue where the button only worked when I touched the pin on the bottom of it, not when I clicked it. I talked to Nathan during lab time and he told me about using input pullup, which fixed the problem. Here's the full <i>setup()</i> function:</p>
 
       <pre><code class="language-arduino">
       void setup() {
@@ -347,6 +347,153 @@
       long AS_sensorValue = AS_sensor.capacitiveSensor(1000);  
       long B_sensorValue = B_sensor.capacitiveSensor(1000);    
       </code></pre>
+
+      <p>Next, I reassign the button state variables to the current state of each button, and then call the function that checks for a button press:</p>
+
+      <pre><code class="language-arduino">
+      //Get the state of each button
+      buttonOneState = digitalRead(buttonOnePin);
+      buttonTwoState = digitalRead(buttonTwoPin);
+
+      //Changing the octave if a button is pressed (button 1 lowers it, b2 raises it), or playing a song if a button is double-clicked
+      checkForButtonPress();
+      </code></pre>
+
+      <p>I'll explain more about the button press function in the next section.</p>
+
+      <p>After checking for a button press, I have the final part of my loop: playing the note. It's a series of if/else if statements in which a note is played if the sensor value is greater than 0, which I determined was the appropriate threshold. When calling the <i>tone()</i> function, I set the frequency to the current octave's index of the note array minus 2. The reason I subtract two is because the second octave on the piano is the first index of each note array, which is called by position [0]. I have the buzzer play the note for 200 ms when the tape is pressed, which I determined to be a good amount through trial and error.</p>
+
+      <pre><code class="language-arduino">
+      //Series of if/else if statments that play a note if it's being held down
+      if (C_sensorValue > 0) {
+        tone(buzzerPin, C[curOctave - 2], 200);   //cur octave - 2 since the array starts with C2, but the index is 0
+        delay(200);
+      }
+
+      else if (CS_sensorValue > 0) {
+        tone(buzzerPin, CS[curOctave - 2], 200);
+        delay(200);
+      }
+
+      else if (D_sensorValue > 0) {
+        tone(buzzerPin, D[curOctave - 2], 200);
+        delay(200);
+      }
+
+      else if (DS_sensorValue > 0) {
+        tone(buzzerPin, DS[curOctave - 2], 200);
+        delay(200);
+      }
+
+      else if (E_sensorValue > 0) {
+        tone(buzzerPin, E[curOctave - 2], 200);
+        delay(200);
+      }
+
+      else if (F_sensorValue > 0) {
+        tone(buzzerPin, F[curOctave - 2], 200);
+        delay(200);
+      }
+
+      else if (FS_sensorValue > 0) {
+        tone(buzzerPin, FS[curOctave - 2], 200);
+        delay(200);
+      }
+
+      else if (G_sensorValue > 0) {
+        tone(buzzerPin, G[curOctave - 2], 200);
+        delay(200);
+      }
+
+      else if (GS_sensorValue > 0) {
+        tone(buzzerPin, GS[curOctave - 2], 200);
+        delay(200);
+      }
+
+      else if (A_sensorValue > 0) {
+        tone(buzzerPin, A[curOctave - 2], 200);
+        delay(200);
+      }
+
+      else if (AS_sensorValue > 0) {
+        tone(buzzerPin, AS[curOctave - 2], 200);
+        delay(200);
+      }
+
+      else if (B_sensorValue > 0) {
+        tone(buzzerPin, B[curOctave - 2], 200);
+        delay(200);
+      }
+      </code></pre>
+
+      <p>I wanted to consolidate playing a note into a single for loop that would iterate and check the value of each, but it wouldn't let me make an array of each note array. I talked to Nathan to try and find a solution, but in the end we decided it wasn't worth so much extra work just to decrease the amount of code by a few lines.</p>
+
+      <br>
+
+      <h5><b>Tab 2: Checking For A Button Press</b></h5>
+
+      <p>This tab has just one function: <i>checkForButtonPress()</i>, which is called in the loop function of the first tab. The function first checks if button one (the left button) was pressed. If so, it assigns currentMillis to the result of the <i>millis()</i> function. I then have a timer to detect whether or not the button has been double clicked. If the current ms minus the previous ms is greater than 200 ms, the previous ms variable is assigned to the value of the current ms. As an aside, the previousMillis variable was defined in the first tab:</p>
+
+      <pre><code class="language-arduino">
+      unsigned long previousMillis = 0;  //Stores last time a Button was pressed
+      </code></pre>
+
+      <p>If it's been over 200 ms and the button wasn't pressed again, it delays by 150 ms to allow time for releasing the button. Otherwise, it'll try to change the octave by more than 1. Next, it re-checks the button state to see if it's been released or not. If the current octave isn't 2 (the lowest it can go) and the button isn't pressed, it decreases the octave by one. Outside of the timer if statement, there's an else if in which, if the button has been double clicked, it plays Rondo Alla Turca, a Mozart song I played on the piano a few years ago (I'll explain more in the next section). If the first button wasn't clicked, however, it does this same process with the second button if the second one was pressed. The only changes are that it looks to see if the current octave is 7 (highest octave) before increasing the octave by one, and instead of playing Rondo Alla Turca it plays Happy Birthday. Here's the whole tab:</p>
+
+      <pre><code class="language-arduino">
+      //Function to check for octave change (button pressed)
+      void checkForButtonPress() {
+        //Only does an action if button 1 is pressed
+        if (buttonOneState == LOW) {
+          unsigned long currentMillis = millis();
+
+          //Timer
+          if (currentMillis - previousMillis >= 200) {
+            previousMillis = currentMillis;
+
+            delay(150);
+            buttonOneState = digitalRead(buttonOnePin);   //Re-gets state of button to check if it's still pressed or not
+
+            //Decreases the octave if it's not already the lowest octave and the button hasn't been double clicked
+            if (curOctave != 2 && buttonOneState != LOW) {
+              curOctave--;
+            } 
+          }
+
+          //If the button HAS been double clicked, it plays Rondo Alla Turca
+          else if (buttonOneState == LOW) {
+             playRondoAllaTurca(150);
+          }
+        }
+
+        //Only does an action if button 1 wasn't pressed and button 2 was pressed
+        else if (buttonTwoState == LOW) {
+          unsigned long currentMillis = millis();
+          
+          if (currentMillis - previousMillis >= 200) {
+            previousMillis = currentMillis;
+
+            delay(150);
+            buttonTwoState = digitalRead(buttonTwoPin);
+
+            //Increases the octave if it's not already the highest octave and the button hasn't been double clicked
+            if (curOctave != 7 && buttonTwoState != LOW) {
+              curOctave++;
+            } 
+          }
+
+          //If the button HAS been double clicked, it plays Happy Birthday
+          else if (buttonTwoState  == LOW) {
+             playHappyBirthday(120);
+          }
+        }
+      }
+      </code></pre>
+
+      <br>
+
+      <h5><b>Tab 3: Rondo Alla Turca</b></h5>
+
 
 
     </div>
