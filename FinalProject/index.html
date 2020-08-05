@@ -494,7 +494,94 @@
 
       <h5><b>Tab 3: Rondo Alla Turca</b></h5>
 
+      <p>This tab is used solely when the left button is double clicked to play Rondo Alla Turca. The main function takes beats per minute as a parameter, so the first thing I did was calculate the note lengths in ms. For example, to calculate of the duration of a quarter note, I took 60,000 (the number of ms in a minute) and divided it by the bpm. I defined global variables in the first tab to hold the duration of each note:</p>
 
+      <pre><code class="language-arduino">
+      //Initializing note lengths for the different notes in the songs
+      //Allows me to change the length of all notes of the same type (ie. all quarter notes) without having to change each individual one
+      int halfNote;
+      int quartNote;
+      int dotEigthNote;
+      int eigthNote;
+      int sixteenthNote;
+      int thirtySecondNote;    
+      </code></pre>
+
+      <p>And then in main function of the Rondo Alla Turca tab, I calcluated the duration of each note, and then I have it play the first section twice (since there's a repeat) and then the second section:</p>
+      
+      <pre><code class="language-arduino">
+      void playRondoAllaTurca(int bpm){
+        quartNote = (int) ((float) 60000 / bpm);
+        halfNote = quartNote * 2;                     
+        eigthNote = (int) (quartNote / 2);         
+        sixteenthNote = (int) ((float) quartNote / 4);
+        thirtySecondNote = (int) ((float) sixteenthNote / 2);
+        
+        rondoSectionOne(bpm);
+        rondoSectionOne(bpm);
+
+        rondoSectionTwo(bpm);
+      }
+      </code></pre>
+
+      <p>As you can see, each section of the song has it's own function. Both are structured in the same way. There's an array of integers called notes, which holds the series of notes in the section. For example, calling middle C in the array is C[2]. It's 2 because octave 4 is the 2nd index of the notes arrays in the main tab. There's also a noteDurations array which holds the duration of each note in the secton. Next, I wanted to determine the length of the array so that I could use it in the for loop (I'll explain the loop next). To do so, I read <a href = "https://riptutorial.com/c/example/1125/array-length">this</a> tutorial that explained how to find the length of an array. I thought it would be simply calling <i>notes.length()</i> like in Java, but it's much more complicated in C. I have to divide the size of the array in bytes by the size of the first element, determining the length. After determining the length, I have a for loop that loops through each element in the array and plays the current index of notes for a duration of the current index of noteDurations, and then delays by the note duration. I repeated this for the second section, and it worked! Here's the final code:</p>
+
+      <pre><code class="language-arduino">
+      //Function to play Rondo Alla Turca
+      void playRondoAllaTurca(int bpm){
+        quartNote = (int) ((float) 60000 / bpm);
+        halfNote = quartNote * 2;                     
+        eigthNote = (int) (quartNote / 2);         
+        sixteenthNote = (int) ((float) quartNote / 4);
+        thirtySecondNote = (int) ((float) sixteenthNote / 2);
+        
+        rondoSectionOne(bpm);
+        rondoSectionOne(bpm);
+
+        rondoSectionTwo(bpm);
+      }
+
+      //First Section of Rondo Alla Turca
+      void rondoSectionOne(int bpm){
+        int notes[44] = {B[2], A[2], GS[2], A[2], C[3]};   //Only the first 5 notes, the rest was too long and repetitive for it to be necessary
+
+        int noteDurations[44] = {sixteenthNote, sixteenthNote, sixteenthNote, sixteenthNote, quartNote};   //Again, only the first 5 notes
+
+        //Determining array length
+        int notesLength = sizeof(notes) / sizeof(notes[0]);
+
+        //Looping through the arrays and playing each note
+        for (int i = 0; i < notesLength; i++){
+          tone(buzzerPin, notes[i], noteDurations[i]);
+          delay(noteDurations[i]);
+        }
+      }
+
+      //Second Section of Rondo Alla Turca
+      void rondoSectionTwo(int bpm){
+        int notes[81] = {E[3], F[3], G[3], G[3], A[3]};
+
+        int noteDurations[81] = {eigthNote, eigthNote, eigthNote, eigthNote, sixteenthNote};
+
+        //Determining array length
+        int notesLength = sizeof(notes) / sizeof(notes[0]);
+
+        //Looping through the arrays and playing each note
+        for (int i = 0; i < notesLength; i++){
+          tone(buzzerPin, notes[i], noteDurations[i]);
+          delay(noteDurations[i]);
+        }
+      }
+      </code></pre>
+
+      <br>
+
+      <h5><b>Tab 4: Happy Birthday:</b></h5>
+
+
+
+
+      <br>
 
     </div>
 
@@ -504,7 +591,6 @@
 
       <p></p>
 
-      <br>
     </div>
 
   </div>
