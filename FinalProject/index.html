@@ -290,7 +290,7 @@
       int curOctave = 4;
       </code></pre>
 
-      <p>The next thing I did was define the sensors for each piece of copper tape. I split them up into groups of three, as there are three notes to a charge pin.</p>
+      <p>The next thing I did was define the sensors for each piece of copper tape. I split them up into groups of three, as there are three notes to a charge pin. These are the definitions for the first three notes:</p>
 
       <pre><code class="language-arduino">
       //Defining sensors for each piece of copper tape. 12 total (1 for each note)
@@ -298,18 +298,6 @@
       CapacitiveSensor C_sensor = CapacitiveSensor(11, 12); //11 is charge pin.  12 is sense pin.
       CapacitiveSensor CS_sensor = CapacitiveSensor(11, 10);
       CapacitiveSensor D_sensor = CapacitiveSensor(11, 13);
-
-      CapacitiveSensor DS_sensor = CapacitiveSensor(7, 9);
-      CapacitiveSensor E_sensor = CapacitiveSensor(7, 8);
-      CapacitiveSensor F_sensor = CapacitiveSensor(7, 6);
-
-      CapacitiveSensor FS_sensor = CapacitiveSensor(3, 5);
-      CapacitiveSensor G_sensor = CapacitiveSensor(3, 4);
-      CapacitiveSensor GS_sensor = CapacitiveSensor(3, 2);
-
-      CapacitiveSensor A_sensor = CapacitiveSensor(A5, 1);
-      CapacitiveSensor AS_sensor = CapacitiveSensor(A5, 0);
-      CapacitiveSensor B_sensor = CapacitiveSensor(A5, A3);
       </code></pre>
 
       <p>Next, I defined the pin for the buzzer and the pins/starting states for the buttons:</p>
@@ -339,21 +327,12 @@
       }
       </code></pre>
 
-      <p>Next I have the <i>loop()</i> section of my code, which contains most of the actual note playing. I started it by defining the sensor values for each note:</p>
+      <p>Next I have the <i>loop()</i> section of my code, which contains most of the actual note playing. I started it by defining the sensor values for each note (below are the first three):</p>
 
       <pre><code class="language-arduino">
       long C_sensorValue = C_sensor.capacitiveSensor(1000);  
       long CS_sensorValue = CS_sensor.capacitiveSensor(1000);  
       long D_sensorValue = D_sensor.capacitiveSensor(1000);  
-      long DS_sensorValue = DS_sensor.capacitiveSensor(1000);  
-      long E_sensorValue = E_sensor.capacitiveSensor(1000);  
-      long F_sensorValue = F_sensor.capacitiveSensor(1000);  
-      long FS_sensorValue = FS_sensor.capacitiveSensor(1000);  
-      long G_sensorValue = G_sensor.capacitiveSensor(1000);  
-      long GS_sensorValue = GS_sensor.capacitiveSensor(1000);  
-      long A_sensorValue = A_sensor.capacitiveSensor(1000);  
-      long AS_sensorValue = AS_sensor.capacitiveSensor(1000);  
-      long B_sensorValue = B_sensor.capacitiveSensor(1000);    
       </code></pre>
 
       <p>Next, I reassign the button state variables to the current state of each button, and then call the function that checks for a button press:</p>
@@ -612,6 +591,8 @@
         }
       }
       </code></pre>
+
+      <p>I broke up the code a bunch and didn't include all of it (for example, only showing 3 notes instead of all 12). The ZIP folder with all of the code can be downloaded <a download href = './Final_Project.zip'>here</a></p>
 
       <br>
 
