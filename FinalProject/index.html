@@ -578,8 +578,32 @@
 
       <h5><b>Tab 4: Happy Birthday:</b></h5>
 
+      <p>The last tab contains a function to play Happy Birthday. It's structured in the same way as Rondo Alla Turca, so there's not much to explain. Here's the code:</p>
 
+      <pre><code class="language-arduino">
+      void playHappyBirthday(int bpm){
+        //60,000 because there's 60,000 ms in a minute
+        quartNote = (int) ((float) 60000 / bpm); //At 120 BPM a quarter note will have a duration of 500 ms
+        halfNote = quartNote * 2;                     
+        dotEigthNote = (int) (quartNote * 0.75);       
+        sixteenthNote = (int) ((float) quartNote / 4);
 
+        //Array of notes for Happy Birthday
+        int notes[] = {C[4], C[4], D[4], C[4], F[4]};   //Like above, I'm only displaying the first 5 notes
+
+        //Note durations
+        int noteDurations[25] = {dotEigthNote, sixteenthNote, quartNote, quartNote, quartNote};
+
+        //Determining array length
+        int notesLength = sizeof(notes) / sizeof(notes[0]);
+
+        //Looping through the arrays and playing each note
+        for (int i = 0; i < notesLength; i++){
+            tone(buzzerPin, notes[i], noteDurations[i]);
+            delay(noteDurations[i]);
+        }
+      }
+      </code></pre>
 
       <br>
 
