@@ -45,7 +45,7 @@
 
       <p>
         <ul>
-          <li>Copper tape senses touch and the buzzer plays a note corresponding to the note on the keyboard that was pressed</li>
+          <li>Copper tape senses touch and the buzzer plays a note corresponding to the key that was pressed</li>
           <li>Each piece of copper tape is connected to a sense pin, which the code uses to determine which note was pressed</li>
           <li>Every 3 pieces of tape have resistors soldered together that connect to a charge pin</li>
           <li>The left button decreases the octave by 1 and plays Mozart's <i>Rondo Alla Turca</i> when double clicked</li>
@@ -258,9 +258,11 @@
     </div>
 
     <div class = "col-md-12">
+      <br>
+
       <h4><b><u>The Code</u>:</b></h4>
 
-      <p>The code for my project is arguably the most important part. I didn't want to make the code just to play a note when I press a piece of copper tape; I wanted it to do more. So I decided to also make it possible to play 2 pre-made songs simply by double clicking a button. In the end, the code was quite lengthy, so I watched <a href = "https://www.youtube.com/watch?v=dSAb3LZBHp0">this</a> tutorial and learned how to split my code up into different tabs. The first tab contains global variables/constants, the <i>setup()</i> function, and the <i>loop()</i> function. Another tab looks for a button press, and the third and fourth play a song depending on which button was double clicked. I'll explain how the code works (mostly) tab by tab.</p>. 
+      <p>The code for my project is arguably the most important part. I didn't want to make the code just to play a note when I press a piece of copper tape; I wanted it to do more. So I decided to also make it possible to play 2 pre-made songs simply by double clicking a button. In the end, the code was quite lengthy, so I watched <a href = "https://www.youtube.com/watch?v=dSAb3LZBHp0">this</a> tutorial and learned how to split my code up into different tabs. The first tab contains global variables/constants, the <i>setup()</i> function, and the <i>loop()</i> function. Another tab looks for a button press, and the third and fourth play a song depending on which button was double clicked. I'll explain how the code works (mostly) tab by tab.</p> 
 
       <br>
 
@@ -601,46 +603,70 @@
     <div class = "col-md-12">
       <h4><b><u>What I Learned</u>:</b></h4>
 
-      <p>Throughout this final project, I learned so much, from Fusion 360 to soldering to video editing with OpenShot. So, like before, I'm splitting this section up into subsections.</p>
+      <p>Throughout this final project, I learned so much, from more about Fusion 360 to soldering to video editing with OpenShot. So, like before, I'm splitting this section up into subsections to better explain what I learned.</p>
 
       <h5><b>Design:</b></h5>
 
-      <p></p>
+      <p>
+        <ul>
+          <li>I learned more about how to insert an SVG and trace premade shapes over it (like I did with the holes in the box).</li>
+          <li>How to design pins to fit properly with given wiggle room.</li>
+        </ul>
+      </p>
 
       <br>
 
 
       <h5><b>Building:</b></h5>
 
-      <p></p>
+      <p>
+        <ul>
+          <li>Originally, I had no clue how to design a circuit that could fit multiple pieces of tape into one charge pin. Learning more about how the circuit works and sketching it out helped me learn a lot more about how circuits and capacitence work.</li>
+          <li>How helpful it is to determine which wire plugs into each pin beforehand; doing so made the wiring process significantly easier</li>
+          <li>How to solder. I had never done it before but I feel much more comfortable after the sheer amount of soldering I did for the keyboard</li>
+          <li>The importance of planning out each step of the building process ahead of time. Originally, I wanted to do all twelve wires at once but, in talking to Nathan, realized it wouldn't be smart to spend all that time wiring and soldering without knowing if the circuit actually worked, which is why I did an original test with three keys.</li>
+        </ul>
+      </p>
 
       <br>
 
 
       <h5><b>Code:</b></h5>
 
-      <p></p>
+      <p>
+        <ul>
+          <li>How to use an arrays for the note frequencies to make it easier to call and play a certain note.</li>
+          <li>How to use a timer to check for a double click on the buttons</li>
+          <li>The importance of using INPUT_PULLUP for the buttons since I didn't wire them to a resistor</li>
+          <li>How to split up the notes and note durations for my premade songs into seperate arrays and then play them using a for loop</li>
+          <li>How to split my code up into tabs to make it more organized. Before I made tabs, my code was really cluttered and it was hard to find specific sections at times. Using tabs was quite helpful.</li>
+        </ul>
+      </p>
 
       <br>
 
 
       <h5><b>Video Editing:</b></h5>
 
-      <p></p>
+      <p>
+        <ul>
+          <li>I watched <a href = "https://www.youtube.com/watch?v=TeKRsMO_6Rw">this</a> OpenShot tutorial in which I learned a lot about the basics and how to make my final video better than just raw footage.</li>
+          <li>How to properly upload a video to YouTube, which isn't something I've done before</li>
+        </ul>
+      </p>
 
       <br>
 
 
       <h5><b>Mistakes and How to Fix Them:</b></h5>
 
-      <p></p>
-
-      <br>
-
-
-
-
-
+      <p>
+        <ul>
+          <li>Making the box too small: I modeled the box to fit the length of my keyboard and the width of the Metro. In doing so, I had very little room to fit all of the wires, especially because of how much space the soldered parts took up, as they couldn't be bent to make room. This should have been an easy fix IF we had had access to the lab. Unfortunately, we don't, so I had to make do with the box that I had. That's why in the video it's not fully closed, doing so would have broken some wires and maybe even the Metro, which I didn't want to happen.</li>
+          <li>Not testing the capacitence beforehand: In the end, my keyboard is only fully functioning when plugged into my computer's keyboard. When I tried plugging it into the 5V battery pack from my kit, or into a wall outlet, or even into another laptop, only the keys with the 10k ohm resitors worked; the ones with 1k ohm resistors didn't work. I used the Serial monitor to look at the readings. On my computer where the whole piano worked, the 1k's were getting a reading of 10-100, and the ones with 10k were getting upwards of 450. But when I plugged it into anything else, the 1k's stayed at 0. This was a capacitence issue that I hadn't even thought of; I just assumed that 1k resistors would work well. It may seem that I could have fixed this by simply replacing the 1k resistors with stronger ones. However, I was tinkering with my code until just before filming, so I had never tried my piano in another outlet besides the one in my computer. By that point, all the resistors were soldered on and I didn't have time to redo half my project. It's unfortunate, but I'm really happy with my solution of placing my computer's keyboard on the ground and connecting to the piano from there. You can't even tell that there's a keyboard in the video. </li>
+          <li>Letting my dog near my project: Oh boy, this is a fun one. For my recording, I had my keyboard plugged into my computer's keyboard through a long USB, so the computer keyboard was on the ground under my desk. At this point, I was getting ready to film and my dog decided it was a great idea to sit under my desk. When I stood up to film, he took it as "oh we're going on a walk", raced out from under my desk, and got caught on my USB cable. It yanked my piano off the desk, which I thankfully caught, but it ripped off the back of the box, disconnected about ten wires, and damaged the USB port on the Metro. It took me more takes than it should've to film because the piano kept disconnecting (and it's why the USB is plugged in weirdly at the end of my video). Thankfully, my project wasn't broken and I was still able to film exactly what I wanted.</li>
+        </ul>
+      </p>
 
     </div>
 
