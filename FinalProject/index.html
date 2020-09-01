@@ -133,7 +133,7 @@
       <p>The next part of my project was designing the circuit. I thought it would be easy to just plug in the copper tape but soon realized it was much more complicated that that. Since each piece of tape needs to connect to a charge pin and a sense pin, it seemed like I would need 24 pins for the 12 pieces of tape, plus an additional three pins for the buzzer and buttons. This was a big issue: the Metro only has 20 pins (0-13, A0-A5). I talked to Nathan, and he told me that it was possible to wire multiple pieces of tape to one charge pin. I knew I would need to solder wires together to do so, and I'll explain more about that in the Build Process section. To make sure I knew how the circuit would work, I made a preliminary sketch consisting of just two keys that shows how they connect to one charge pin. The wire from the tape, a resistor, and another wire are saudered togehter at a connected point. The additional wire is then connected directly to the key's send pin. Next, the resistor is soldered to another wire. The two wires soldered to the resitors connect together and are soldered with a final wire which then connects to the charge pin. Doing this enabled me to reduce the number of pins I needed, which was very helpful. The circuit sketch looked like this:</p>
 
       <div>
-        <img src = "./PrelimSketch.png" class = "img-responsive margin" style = "float: left; width: 40%; padding: 5px height: width*0.75" alt = "PrelimSketch">
+        <img src = "./PrelimSketch.png" class = "img-responsive margin" style = "float: left; width: 40%; height: width*0.75; padding: 5px"  alt = "PrelimSketch">
       </div>
     </div>
 
@@ -141,7 +141,7 @@
       <p>With the circuit sketch completed, I knew how the entire thing would be wired. But I had two things left to decide: 1) How many keys would be connected to one charge pin and 2) Which wire would go to each pin. I started by thinking about how many keys I should connect to each charge pin. I knew that I had a total of 20 pins, 12 of which were send pins for the keys and 3 of which were for the buzzer and buttons, leaving me with 5. Since I had 12 pieces of tape, I decided to split them up into groups of 3 and have 4 charge pins, as I didn't want to have to solder too many wires together, which could've been risky. Next, I wanted to write out where each wire would be plugged in before I started building to make the wiring easier. I decided that since I was going to have a large amount of wires, it would be best if I positioned the metro so that pins 0-13 were facing away from the keys (more about that in the Build Proecess section). Once I had that figured out, I wrote a list of where each wire would connect. This was the final list: </p>
 
       <div>
-        <img src = "./PinsSketch.png" class = "img-responsive margin" style = "float: left; width: 35%; padding: 5px" height = "400" alt = "PinsSketch">
+        <img src = "./PinsSketch.png" class = "img-responsive margin" style = "float: left; width: 35%; height: width*0.75; padding: 5px" alt = "PinsSketch">
       </div>
     </div>
 
@@ -162,8 +162,9 @@
       <p>The first thing I did for building my piano was gluing the keys onto the platform. Initially, I sketched out in pencil how I would glue each key down. Once that was done, I used my hot glue gun to glue the keys. Below is a picture of the gluing just over halfway through and then another at the end.</p>
 
       <div>
-        <img src = "./KeysAndPlatform1.png" class = "img-responsive margin" style = "float: left; width: 35%; padding: 5px" height = "500" alt = "KeysAndPlatform1">
-        <img src = "./KeysAndPlatform2.png" class = "img-responsive margin" style = "float: left; width: 35%; padding: 5px" height = "500" alt = "KeysAndPlatform2">
+        <img src = "./KeysAndPlatform1.png" class = "img-responsive margin" style = "float: left; width: 35%; height: width*0.75; padding: 5px" alt = "KeysAndPlatform1">
+        
+        <img src = "./KeysAndPlatform2.png" class = "img-responsive margin" style = "float: left; width: 35%; height: width*0.75; padding: 5px" alt = "KeysAndPlatform2">
       </div>
     </div>
 
@@ -177,8 +178,8 @@
       <p>Testing my circuit with just three keys required me to solder wires together, something I've never done before. I talked to Nathan, Rob, and Victoria beforehand to get some tips on how to solder, and then I watched <a href = "https://www.youtube.com/watch?v=Qps9woUGkvI">this</a> tutorial on how to solder. Luckily, my grandfather is a retired engineer, so I used his old soldering iron that I found in my basement. I first cut out the pieces of copper tape that I would use on these three keys. Two pieces of copper tape came with wires already soldered on, so that wasn't an issue. When it came to the third piece of tape, I had to do my first bit of soldering. I did some practice with spare wire beforehand so that I felt more comfortable when working with the tape. Once I soldered a wire to the copper tape, I covered it with a piece of black tape, just like the pieces in my kit. One I had all three pieces of tape ready with wire, I taped them down to the first three keys and stuck the wires through the holes in the front of the box (it was still unassembled at this time). Once the wires were stuck through the box it was time for the heavy-duty soldering. For the first key, I grabbed a 1k ohm resistor and another wire and twisted both together with the wire coming from the tape. Once they were twisted together, I soldered them together. I then repeated this process for the other two keys. After completing this, I twisted the three resistors together with another wire and soldered them all together (this was the wire that would go to the charge pin. The result of the soldering looked like this:</p>
 
       <div>
-        <img src = "./FirstThreeKeys1.png" class = "img-responsive margin" style = "float: left; width: 35%; padding: 5px" height = "500" alt = "FirstThreeKeys1">
-        <img src = "./FirstThreeKeys2.png" class = "img-responsive margin" style = "float: left; width: 35%; padding: 5px" height = "500" alt = "FirstThreeKeys2">
+        <img src = "./FirstThreeKeys1.png" class = "img-responsive margin" style = "float: left; width: 35%; height: width*0.75; padding: 5px" alt = "FirstThreeKeys1">
+        <img src = "./FirstThreeKeys2.png" class = "img-responsive margin" style = "float: left; width: 35%; height: width*0.75; padding: 5px" alt = "FirstThreeKeys2">
       </div>
     </div>
 
@@ -192,8 +193,8 @@
       <p>After my test with three keys was successful, I decided to glue most of the box together (excluding the top and back so that I had room to work). First I hot glued the sides and bottom onto the front of the box:</p>
 
       <div>
-        <img src = "./SidesFrontView.png" class = "img-responsive margin" style = "float: left; width: 35%; padding: 5px" height = "500" alt = "SidesFrontView">
-        <img src = "./SidesBackView.png" class = "img-responsive margin" style = "float: left; width: 35%; padding: 5px" height = "500" alt = "SidesBackView">
+        <img src = "./SidesFrontView.png" class = "img-responsive margin" style = "float: left; width: 35%; height: width*0.75; padding: 5px" alt = "SidesFrontView">
+        <img src = "./SidesBackView.png" class = "img-responsive margin" style = "float: left; width: 35%; height: width*0.75; padding: 5px" alt = "SidesBackView">
       </div>
     </div>
 
@@ -201,7 +202,7 @@
       <p>Next I glued the bottom of the platform holding the keys to the bottom of the box (there's paper on it because I pushed the keyboard down onto a spare envelope to flatten out the glue):</p>
 
        <div>
-        <img src = "./BottomOfBox.png" class = "img-responsive margin" style = "float: left; width: 35%; padding: 5px" height = "500" alt = "BottomOfBox">
+        <img src = "./BottomOfBox.png" class = "img-responsive margin" style = "float: left; width: 35%; height: width*0.75; padding: 5px" alt = "BottomOfBox">
       </div>
     </div>
 
@@ -215,7 +216,7 @@
       <p>At this point, there were nine remaining keys to wire. I started by repeating the process for the third key I had done earlier: cutting out a piece of copper tape, soldering a wire to it, puting some black tape on the top, taping it down onto the key, and then sticking the wire through the front of the box. I did this for all nine remaning keys, and the result looked like this:.</p>
 
       <div>
-        <img src = "./TwelveWires.png" class = "img-responsive margin" style = "float: left; width: 35%; padding: 5px" height = "500" alt = "TwelveWires">
+        <img src = "./TwelveWires.png" class = "img-responsive margin" style = "float: left; width: 35%; height: width*0.75; padding: 5px" alt = "TwelveWires">
       </div>
     </div>
 
@@ -223,8 +224,8 @@
       <p>Once these wires were stuck through the box, I repeated the process from before of soldering the wire from the tape, a resistor, and another wire together. Again, I soldered resistors in groups of three to another wire to connect to a charge pin. The only difference here came with the resistors. I didn't have twelve of any resistor, so I knew that I'd have to split the resistance amount up. In the end, six keys had 1K ohm resistors and the other six had 10K ohm resistors. After soldering all the wires together, I sketched out where the metro was going to go and then hot glued it down using the microcontroller pins I had printed. I put the pins in the Metro first and put a bit of glue on the bottom of the pins then quickly placed it on the box to make sure it stuck. Once the Metro was glued down, I plugged in all of the wires to their given pins. Here's the final wiring for the keys:</p>
 
       <div>
-        <img src = "./FinalKeyWiring1.png" class = "img-responsive margin" style = "float: left; width: 45%; padding: 5px" height = "650" alt = "FinalKeyWiring1">
-        <img src = "./FinalKeyWiring2.png" class = "img-responsive margin" style = "float: left; width: 45%; padding: 5px" height = "650" alt = "Fina2KeyWiring1">
+        <img src = "./FinalKeyWiring1.png" class = "img-responsive margin" style = "float: left; width: 45%; height: width*0.75; padding: 5px" alt = "FinalKeyWiring1">
+        <img src = "./FinalKeyWiring2.png" class = "img-responsive margin" style = "float: left; width: 45%; height: width*0.75; padding: 5px" alt = "Fina2KeyWiring1">
       </div>
     </div>
 
@@ -236,8 +237,8 @@
       <p>After finishing the wiring for the keys, I moved onto gluing and wiring the buzzer and two buttons. The first thing I did was use hot glue to glue the buttons and buzzer into the corresponding holes in the roof of the box, just as I had designed. After gluing them, I decided it would be best if I crimped the buzzer pin going to ground with another wire to reduce the amount of soldering I needed to do. The result looked like this:</p>
 
       <div>
-        <img src = "./InitialBuzzerBot.png" class = "img-responsive margin" style = "float: left; width: 35%; padding: 5px" height = "500" alt = "InitialBuzzerBot">
-        <img src = "./InitialBuzzerTop.png" class = "img-responsive margin" style = "float: left; width: 35%; padding: 5px" height = "500" alt = "InitialBuzzerTop">
+        <img src = "./InitialBuzzerBot.png" class = "img-responsive margin" style = "float: left; width: 35%; height: width*0.75; padding: 5px" alt = "InitialBuzzerBot">
+        <img src = "./InitialBuzzerTop.png" class = "img-responsive margin" style = "float: left; width: 35%; height: width*0.75; padding: 5px" alt = "InitialBuzzerTop">
       </div>
     </div>
 
@@ -245,7 +246,7 @@
       <p>Once I made sure the buzzer and buttons were securely glued down, I moved on to wiring them. First, I used plyers to shape the wires into an oval at the end, which I then placed and tightened around the first button pin. I then repeated this process for the remaining pins. After the wires were in place, I soldered them to the pins, which produced this:</p>
 
       <div>
-        <img src = "./BuzzerWiring.png" class = "img-responsive margin" style = "float: left; width: 35%; padding: 5px" height = "500" alt = "BuzzerWiring">
+        <img src = "./BuzzerWiring.png" class = "img-responsive margin" style = "float: left; width: 35%; height: width*0.75; padding: 5px" alt = "BuzzerWiring">
       </div>
     </div>
 
@@ -253,7 +254,7 @@
       <p>Now that I had the wires soldered on, I moved onto attaching them to the metro. First, I hot glued the wires down on the roos of the box to reduce the stress on the end of the wire, which was most susceptible to breaking. Next, I plugged the wires into their given ports on the metro and connected each button and the buzzer to its own ground, as the board has 3 ground ports. This easily allows me to replace a button or the buzzer if one of them breaks, without having to worry about soldering keeping the three of them attached. The <i>final</i> wiring looked like this:</p>
 
       <div>
-        <img src = "./FinalBuzzerButtons.png" class = "img-responsive margin" style = "float: left; width: 45%; padding: 5px" height = "650" alt = "FinalBuzzerButtons">
+        <img src = "./FinalBuzzerButtons.png" class = "img-responsive margin" style = "float: left; width: 45%; height: width*0.75; padding: 5px" alt = "FinalBuzzerButtons">
       </div>
     </div>
 
