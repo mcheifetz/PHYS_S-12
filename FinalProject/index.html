@@ -27,7 +27,7 @@
       <h4><b><u>Video Demonstration</u>:</b></h4>
       
       <div>
-        <iframe width="560" height="315" src="https://www.youtube.com/embed/Jo2T68-ej94" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/-Pw6uaO5axM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
       </div>
 
       <br>
@@ -35,7 +35,7 @@
 
     <div class = "col-md-12">
       <h4><b><u>Why I Chose This Project</u>:</b></h4>
-      <p>Not only do I love music, but I've played piano ever since I was five years old. It's one of my favorite hobbies. So when I was thinking of ideas for my final project, a piano was one of the first things I brainstormed. I talked with Nathan, Victoria, and Rob, and I was thrilled when they all told me my idea was plausible. I originally wanted to just have the keys press down on some buttons, but I soon realized that would be too tedious and not really display how much I've learned throughout this course. So I decided to use copper tape to sense touch, which was a significantly better idea. In the end, I'm really glad about how well it turned out. But in the planning phase, I had no idea how much work this piano would really require.</p>
+      <p>Not only do I love music, but I've been an avid piano player since I was five years old and, to this day, it's one of my favorite hobbies. When I was thinking of ideas for my final project, I wanted to apply the mechanical knowledge I had learned to something enjoyable in my daily life, so a piano was one of the first things I brainstormed. After a couple initial ideas (that used clunky, actual keys), I decided to use copper tape to sense touch, which was a significantly better idea. In the end, I'm really happy with how it turned out.</p>
 
       <br>
     </div>
@@ -45,11 +45,11 @@
 
       <p>
         <ul>
-          <li>Copper tape senses touch and the buzzer plays a note corresponding to the key that was pressed</li>
+          <li>Copper tape electrically senses touch and the buzzer plays a note corresponding to the key that was pressed</li>
           <li>Each piece of copper tape is connected to a sense pin, which the code uses to determine which note was pressed</li>
           <li>Every 3 pieces of tape have resistors soldered together that connect to a charge pin</li>
           <li>The left button decreases the octave by 1 and plays Mozart's <i>Rondo Alla Turca</i> when double clicked</li>
-          <li>The right button increases the octave by 1 and plays Happy Birthday when double clicked</li>
+          <li>The right button increases the octave by 1 and plays <i>Happy Birthday</i> when double clicked</li>
         </ul>
       </p>
 
@@ -64,11 +64,11 @@
 
       <h5><b>The Keys:</b></h5>
       
-      <p>The first thing I did was find <a href = https://www.thingiverse.com/thing:17772>this</a> set of piano keys on Thingiverse. I originally thought it would be best to 3D print the full models of my keys, but after an initial design, it turned out that the print would take over <i>18 hours</i>. After talking to Nathan and Victoria, we decided it would be best to laser cut them instead. That's where my new designs began. I took the original key design from Thingiverse and retraced it to give me more design freedom. This was a necessary step since I imported the keys as a mesh body, which was extrememly difficult to edit, plus it wouldn't work for laser cutting. Once I had the keys traced, I was ready to export the design to be laser cut. Here's how the final design turned out.</p>
+      <p>The first thing I did was find <a href = https://www.thingiverse.com/thing:17772>this</a> set of piano keys on Thingiverse. Knowing that it would be easier to laser cut keys rather than 3D print them, I took the original key design from Thingiverse and retraced it to give me more design freedom. This was a necessary step since I imported the keys as a mesh body, which was extrememly difficult to edit, plus it wouldn't work for laser cutting. Once I had the keys traced, I was ready to export the design to be laser cut. Here's how the final design turned out:</p>
 
       <iframe src="https://students8326.autodesk360.com/shares/public/SH56a43QTfd62c1cd9682338b96108dcd63c?mode=embed" width="640" height="480" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true" frameborder="0"></iframe>
 
-      <p>However, I needed to split up the black keys and white keys for laser cutting, as they would be cut in different colors. While designing the keys, I had made the white keys their own sketch and the black keys their own sketch. From there, I exported each as a .dxf file to prepare them for laser cutting. Here is the .dxf files for the piano keys:</p>
+      <p>However, I needed to split up the black keys and white keys for laser cutting, as they would be cut in different colors. While designing the keys, I had made the white keys their own sketch and the black keys their own sketch. From there, I exported each as a .dxf file to prepare them for laser cutting. Here are the .dxf files for the piano keys:</p>
 
       <ul>
         <li>White keys DXF: <a download href = './White_Keys.dxf'>White Keys</a></li>
@@ -81,7 +81,7 @@
 
       <h5><b>The Box:</b></h5>
       
-      <p>I knew that I would need a box to fit all of my wires, the metro, the buzzer, and the buttons. During one of our class meetings, someone mentioned using a website to automatically create a box that came ready to be laser cut. I inquired about this and Nathan directed me to <a href = "https://en.makercase.com/#/basicbox">Makercase</a>, where I input the dimensions for my box. Since my piano keys totaled 165 mm in length and my Metro microcontroller was about 54 mm wide, I inputted the dimensions for my box as 165 mm x 25.5 mm x 62 mm. Once that was finalized, I downloaded it as a .svg and inserted it into Fusion 360. At this point, I had to add some additional things to the box. On the front face, I added twelve 1.5 mm holes for each piece of copper tape (1 piece of tape per key). And on the top face, I added a circular hole in the middle for the buzzer, and two square holes on either side of the buzzer for the buttons. Once that was completed, the design was finished. Here's how the final design looked:</p>
+      <p>I knew that I would need a box to fit all of my wires, the metro, the buzzer, and the buttons. I utilized a resource called <a href = "https://en.makercase.com/#/basicbox">Makercase</a>, which automatically creates a box exactly like the one I needed. On the website, I input the dimensions for my box. Since my piano keys totaled 165 mm in length and the Metro microcontroller is about 54 mm wide, I input the dimensions for my box as 165 mm x 25.5 mm x 62 mm. Once that was finalized, I downloaded it as a .svg and inserted it into Fusion 360. Next, on the front face, I added twelve 1.5 mm holes for each piece of copper tape (1 piece of tape per piano key). And on the top face, I added a circular hole in the middle for the buzzer and two square holes on either side of the buzzer for the buttons. Once that was completed, the design was finished. Here's how the final design looked:</p>
 
       <iframe src="https://students8326.autodesk360.com/shares/public/SH56a43QTfd62c1cd96823206ae6f81adfed?mode=embed" width="640" height="480" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"  frameborder="0"></iframe>
 
